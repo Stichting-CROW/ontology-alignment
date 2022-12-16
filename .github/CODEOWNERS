@@ -1,0 +1,5 @@
+# The default: no code has any owners. Changes are allowed.
+*
+
+# Except for .github/workflows files.
+.github/workflows @Stichting-CROW/respec-experts

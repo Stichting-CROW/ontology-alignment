@@ -1,0 +1,152 @@
+name: Initialize
+
+on:
+  push:
+  workflow_dispatch:
+
+env:
+  DOCS_HOME: "https://docs.crow.nl"
+
+jobs:
+  setup-repo:
+    name: Setup repo
+    if: ${{ github.repository != 'Stichting-CROW/respec-repo-template' }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 1 # merely the last
+          ref: ${{ github.head_ref }}
+          token: ${{ secrets.NEW_RESPEC_REPO_WORKFLOW }}
+          # rewriting workflows/*.yaml disallowed without Workflow-level token. 
+
+      - name: Calculate document metadata 🧾
+        uses: actions/github-script@v4
+        id: fetch-repo-and-user-details
+        with:
+          script: |
+            const query = `query ($owner: String!, $name: String!, $login:String!) {
+              repository(owner: $owner, name: $name) {
+                name
+                description
+                owner {
+                  login
+                  ... on User {
+                    name
+                  }
+                  ... on Organization {
+                    name
+                  }
+                }
+              }
+              user(login:$login) {
+                name
+              }
+            }`;
+            const variables = {
+              login: "${{ github.actor }}",
+              owner: context.repo.owner,
+              name: context.repo.repo,
+            }
+            const result = await github.graphql(query, variables)
+            console.log(result)
+            return result
+
+      - name: Calculate variables  🏖️
+        env:
+          INFO: ${{ steps.fetch-repo-and-user-details.outputs.result }}
+        run: |
+          echo "REPO_NAME=$(echo $INFO | jq -r .repository.name)" >> $GITHUB_ENV
+
+      - name: Install cookiecutter 🍪
+        run: pip3 install cookiecutter
+
+      - name: Add workflows 🤖
+        env:
+          INFO: ${{ steps.fetch-repo-and-user-details.outputs.result }}
+        run: |
+          # Run cookiecutter
+          pushd /tmp
+          cookiecutter gh:stichting-crow/respec-workflows-template --no-input
+
+          popd
+          # Move generated content to workflows directory of repo
+          mv /tmp/workflows/* .github/workflows/
+
+      - name: Add first document 👩‍🍳
+        env:
+          INFO: ${{ steps.fetch-repo-and-user-details.outputs.result }}
+        run: |
+          # Run cookiecutter
+          pushd /tmp
+          cookiecutter gh:stichting-crow/respec-document-template --no-input \
+            document_short_name="$REPO_NAME" \
+            repository_name="$REPO_NAME" \
+            document_title="$(echo $INFO | jq -r .repository.description)" \
+            document_type="technische documentatie" \
+            first_editor="$(echo $INFO | jq -r .user.name)"
+
+          popd
+          # Move generated content to root directory of repo
+          mkdir docs
+          mv /tmp/$REPO_NAME docs/
+
+      - name: Clean up after importing 👩‍🍳
+        env:
+          INFO: ${{ steps.fetch-repo-and-user-details.outputs.result }}
+        run: |
+          # Delete the setup workflow, it has served its purpose
+          rm .github/workflows/setup.yaml
+          # Replace the template README with the repo README
+          mv README_AFTER_CLONE.md README.md
+
+      - name: Save template version info
+        run: |
+          declare -a templates=("respec-repo-template" "respec-document-template" "respec-workflows-template")
+
+          for i in "${templates[@]}"; do
+            echo "stichting-crow/$i@$(\
+              curl \
+                -H "Accept: application/vnd.github.v3+json" \
+                https://api.github.com/repos/stichting-crow/$i/releases/latest \
+                | jq -r .tag_name \
+              )" >> .github/VERSION
+          done
+
+      - name: Push new repo contents 🚀
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: |
+            Initialize new ReSpec repository
+
+            Reason: run setup.yaml after clone by ${{ github.actor }}
+          commit_user_name: stichting-crow-klusjesbot
+          commit_user_email: 84876605+stichting-crow-klusjesbot@users.noreply.github.com
+          push_options: --force # since this is at setup
+
+      - name: Report to log 😎
+        run: |
+          echo "## Werkdocument 🎁" >> $GITHUB_STEP_SUMMARY
+          echo "docs/$REPO_NAME/$REPO_NAME" >> $GITHUB_STEP_SUMMARY
+
+  start-gh-pages:
+    name: Configure repo settings
+    # Put in setup.yaml, not in those from stichting-crow/respec-workflows-template, as
+    # that may be execute on repos that might not use gh-pages as
+    runs-on: ubuntu-latest
+    if: ${{ github.repository != 'Stichting-CROW/respec-repo-template' }}
+
+    permissions:
+      pages: write
+
+    steps:
+      - name: Set gh-pages branch and path
+        run: |
+          curl \
+            -X POST \
+            -H "Accept: application/vnd.github.v3+json" \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            https://api.github.com/repos/${{ github.repository }}/pages \
+            -d '{"source":{"branch":"gh-pages","path":"/"}}'
