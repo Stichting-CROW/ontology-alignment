@@ -1,6 +1,6 @@
-# Specificatie
+# Specification
 
-Dit is de GitHub-repository voor ...
+This is the GitHub repo for 'Ontology-Alignment' within CROW
 
 ---
 

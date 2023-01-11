@@ -1,0 +1,75 @@
+
+@prefix rdf:                <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:               <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:                <http://www.w3.org/2002/07/owl#> .
+@prefix sh:                 <http://www.w3.org/ns/shacl#> .
+
+@prefix xsd:                <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos:               <http://www.w3.org/2004/02/skos/core#> .
+@prefix dct:                <http://purl.org/dc/terms/> .
+
+@prefix imbor:              <https://data.crow.nl/imbor/def/> .
+@prefix imbor-domeinwaarde: <https://data.crow.nl/imbor/id/domeinwaarden/> .
+@prefix imbor-meta:         <https://data.crow.nl/imbor/aanvullend-metamodel/> .
+@prefix imbor-term:         <https://data.crow.nl/imbor/term/> .
+
+
+## Terminological
+
+imbor-term:  rdf:type  owl:Ontology ;
+        rdfs:comment  "Dit normatieve gedeelte betreft de vocabulair van IMBOR"@nl ;
+        rdfs:label    "IMBOR Vocabulaire"@nl ;
+        .
+
+imbor-term:10f4ea25-70d7-4e3a-9a05-d7be8dfb0e36
+        rdf:type         skos:Concept ;
+        skos:definition  "Kunstwerk met een beweegbare waterkering, dat de verbinding vormt tussen twee wateren."@nl ;
+        skos:inScheme    imbor-term:term-schema ;
+        skos:prefLabel   "Sluis"@nl ;
+        .
+
+## Conceptual / Logical
+
+imbor:  rdf:type       owl:Ontology ;
+        rdfs:comment   "Dit normatieve gedeelte betreft de kern (de ontologie) van IMBOR"@nl ;
+        rdfs:label     "IMBOR Kernmodel (ontologie)"@nl ;
+        .
+
+imbor:b193d52e-0243-4e0e-9f90-236edb35c624
+        rdf:type         sh:NodeShape , rdfs:Class ;
+        rdfs:seeAlso     imbor-term:10f4ea25-70d7-4e3a-9a05-d7be8dfb0e36 ;
+        skos:definition  "Kunstwerk met een beweegbare waterkering, dat de verbinding vormt tussen twee wateren."@nl ;
+        skos:prefLabel   "Sluis"@nl ;
+        sh:property      imbor:664c6523-af24-43c5-9917-bad872c2b6bd ;
+        .
+
+imbor:664c6523-af24-43c5-9917-bad872c2b6bd
+        rdf:type                sh:PropertyShape ;
+        skos:prefLabel          "type vastgezet op Sluis"@nl ;
+        sh:path                 imbor:e3e112b3-e46f-45c4-b2c9-b152e6f805a1 ;
+        sh:qualifiedMaxCount    1 ;
+        sh:qualifiedValueShape  [ sh:class  imbor:8caeda34-4605-4388-b07d-5b1761bdd4c3 ] ;
+        .
+
+imbor:e3e112b3-e46f-45c4-b2c9-b152e6f805a1
+        rdf:type         rdf:Property ;
+        rdfs:seeAlso     imbor-term:f64e2373-5046-467e-b4d6-d49e8a74ef70 ;
+        skos:definition  "Typering van het beheerobject."@nl ;
+        skos:note        "Enumeratie"@nl ;
+        skos:prefLabel   "type"@nl ;
+        .
+
+imbor:8caeda34-4605-4388-b07d-5b1761bdd4c3
+        rdf:type         rdfs:Class ;
+        rdfs:seeAlso     imbor-term:8f33f9ce-6138-47bb-81cd-038b81a9cbf8 ;
+        rdfs:subClassOf  nen2660:EnumerationType ;
+        skos:definition  "Het enumeratietype SluisType is de naam voor de domeinwaardenlijst van de klasse Sluis en het attribuut type."@nl ;
+        skos:prefLabel   "SluisType"@nl ;
+        .
+
+imbor-domeinwaarde:2d9771b5-d707-47f8-9577-898f05eadd08
+        rdf:type         imbor:8caeda34-4605-4388-b07d-5b1761bdd4c3 ;
+        rdfs:seeAlso     imbor-term:0d1b5949-ae26-4f85-8ef0-b0491eeadcfe ;
+        skos:definition  "Een sluis bedoeld om binnenwater te spuien, dat wil zeggen, het te lozen, en buitenwater te keren."@nl ;
+        skos:prefLabel   "Spuisluis"@nl ;
+        .

@@ -1,0 +1,44 @@
+# Verzinsel
+@prefix rdf:                <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:               <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:                <http://www.w3.org/2002/07/owl#> .
+@prefix sh:                 <http://www.w3.org/ns/shacl#> .
+@prefix dash:               <http://datashapes.org/dash#> .
+@prefix geo:                <http://www.opengis.net/ont/geosparql#> .
+@prefix xsd:                <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos:               <http://www.w3.org/2004/02/skos/core#> .
+@prefix quantitykind:       <http://qudt.org/vocab/quantitykind/> .
+@prefix unit:               <http://qudt.org/vocab/unit/> .
+@prefix dc:                 <http://purl.org/dc/elements/1.1/> .
+@prefix dct:                <http://purl.org/dc/terms/> .
+@prefix nen2767:            <https://data.nen.nl/nen2767-4/def/> .
+@prefix nen2767-term:       <https://data.nen.nl/nen2767-4/term/> .
+
+
+## Terminological
+
+nen2767-term:   rdf:type    owl:Ontology ;
+        rdfs:comment  "Dit is wellicht gelijk aan de NPR van NEN2767-4"@nl ;
+        rdfs:label    "NEN2767-4 Vocabulaire"@nl ;
+        .
+
+nen2676-term:BN 
+        rdf:type         skos:Concept ;
+        skos:definition  "Uitwateringssluis om een overvloed aan water op het binnenwater gereguleerd naar een lager gelegen buitenwater te laten afvloeien. Tevens dient de spuisluis voor het keren van buitenwater."@nl ;
+        skos:prefLabel   "Spuisluis"@nl ;
+        .
+
+
+## Conceptual
+
+nen2676:    rdf:type    owl:Ontology ;
+        rdfs:comment   "Dit normatieve gedeelte betreft de ontologie (de kern) van NEN2767-4"@nl ;
+        rdfs:label     "NEN2767-4 Ontologie"@nl ;
+        .
+
+nen2676:BN
+        rdf:type         rdfs:Class ;
+        rdfs:seeAlso     nen2676-term:BN ;
+        skos:definition  "Kunstwerk met een beweegbare waterkering, dat de verbinding vormt tussen twee wateren."@nl ;
+        skos:prefLabel   "Spuisluis"@nl ;
+        .
