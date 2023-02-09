@@ -20,13 +20,13 @@ The matching process in essence
 There are four different heterogeneity problems that can be considered, the last one ([=semiotic heterogeneity=]) is out of scope for this best practice.
 
 > DEF
-> <dfn>Syntactic heterogeneity</dfn> occurs when[=ontologies=]are not expressed in the same[=ontology=] language (e.g. XML, OWL).
+> <dfn>Syntactic heterogeneity</dfn> occurs when[=ontologies=] are not expressed in the same [=ontology=] language (e.g. XML, OWL).
 
 > DEF
 > <dfn>Terminological heterogeneity</dfn> occurs when different terms refer to the same entity or the same term describes different entities in different ontologies. This may be caused by the use of different natural languages (e.g. Paper vs. Papier), different technical languages (e.g. Paper vs. Memo), or the use of synonyms (Paper vs. Article).
 
 > DEF
-> <dfn>Semantic heterogeneity</dfn> (or Conceptual heterogeneity) occurs when there are differences in modelling the same domain of interest. This may be the case when[=ontologies=]describe different domains at the same level of detail and from an unique perspective (difference in coverage), or when[=ontologies=]describe the same domain from the same perspective but at different levels of detail (difference in granularity), or when[=ontologies=]describe the same domain, at the same level of detail, but from a different perspective (difference in perspective or scope).
+> <dfn>Semantic heterogeneity</dfn> (or Conceptual heterogeneity) occurs when there are differences in modelling the same domain of interest. This may be the case when[=ontologies=] describe different domains at the same level of detail and from an unique perspective (difference in coverage), or when[=ontologies=] describe the same domain from the same perspective but at different levels of detail (difference in granularity), or when[=ontologies=] describe the same domain, at the same level of detail, but from a different perspective (difference in perspective or scope).
 
 > DEF
 > <dfn>Semiotic heterogeneity</dfn> (or Pragmatic heterogeneity) occurs when there are different (human) interpretations of the same (semantically defined) entity.
