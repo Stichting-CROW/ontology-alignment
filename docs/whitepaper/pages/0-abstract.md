@@ -1,4 +1,4 @@
-This whitepaper contains a best practice for creating, managing, using and communicating [=ontology alignments=] (aka: link sets), for the purpose of linking [=ontologies=] and using them in conjunction. It is derived from several literature source and practical implementations on the matter. Furthermore it uses existing (web) standards and combines them to create a practical application. In doing so it proposes a (still lacking) standard approach to [=ontology matching=] (also called 'mapping or 'linking').
+This whitepaper contains a best practice for creating, managing, using and communicating [=ontology alignments=] and [=ontology extensions=] (aka: linksets), for the purpose of linking [=ontologies=] (so _not_ instance data) and using them in conjunction. It is derived from several literature sources and practical implementations on the matter. Furthermore it uses existing (web) standards and combines them to create a practical application. In doing so it proposes a (still lacking) standard approach to [=ontology matching=] (also called 'mapping or 'linking').
 
 It consists of two major parts:
 
@@ -14,3 +14,10 @@ When interest is peaked and one want’s to dive further in the matter, these pu
 - Linked Data Provenance: State of the Art and Challenges, (2015), S. Anam [link](https://www.researchgate.net/publication/271829477_Linked_Data_Provenance_State_of_the_Art_and_Challenges)
 - Towards a Unified Metadata Model for Semantic and Data Mappings, (2022), S. Alzahrani [link](http://disi.unitn.it/~pavel/om2022/papers/om2022_poster2.pdf)
 - Alignments for data interlinking: a proposal for matching/linking cooperation, (2011), J. Euzenat [link](http://melinda.inrialpes.fr/proposal.html)
+- Describing Linked Datasets, (2009), K. Alexander [link](http://events.linkeddata.org/ldow2009/papers/ldow2009_paper20.pdf)
+
+_This initiative was nominated for the [Dutch DigiDareAwards](https://digidareaward.nl/nen2767imbor-in-samenhang-bruikbaar/)._
+
+>ADVISEMENT
+>The second release of this whitepaper (the forelaying) is a major update regarding the use of technical standards. The [[Alignment format]] and [[EDOAL]] standards are replaced by using standard OWL constructs. While the [[Alignment format]] and [[EDOAL]] result in more readable [=linksets=], the use of [[OWL2-primer]] is much more supported in the standard technology stacks.
+

@@ -42,3 +42,7 @@ nen2676:BN
         skos:definition  "Kunstwerk met een beweegbare waterkering, dat de verbinding vormt tussen twee wateren."@nl ;
         skos:prefLabel   "Spuisluis"@nl ;
         .
+
+nen2676:93
+        rdf:type        rdfs:Class ;
+        skos:prefLabel  "Cementbeton"@nl .

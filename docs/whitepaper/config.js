@@ -4,10 +4,19 @@ var respecConfig = {
   shortName: "ontology-alignment/whitepaper",
   specType: "whitepaper", // vrije tekst, kleine letter
   imprint: "crow",
+  prevVersion:
+    "https://docs.crow.nl/ontology-alignment/whitepaper/versions/20230209-DigiDareVersion/",
   editors: [
     // alleen `name` is verplicht, https://respec.org/docs/#person
     {
       name: "Rik",
+      company: "Stichting CROW",
+      url: "https://www.crow.nl/",
+    },
+    {
+      name: "Sander Stolk",
+      company: "Semmtech",
+      url: "https://semmtech.com/",
     },
   ],
   github: "https://github.com/Stichting-CROW/ontology-alignment",
@@ -19,9 +28,10 @@ var respecConfig = {
       status: "Definitief",
       publisher: "Stichting Koninklijk Nederlands Normalisatie Instituut (NEN)",
     },
-    "Ontology matching": {
+    Ontology_matching: {
       title: "Euzenat Jérôme. (2013). Ontology matching (Second). Springer",
       href: "http://www.ontologymatching.org/",
+      publisher: "Springer",
     },
     MIM: {
       title: "MIM - Metamodel Informatie Modellering",
@@ -45,6 +55,12 @@ var respecConfig = {
       title: "SSSOM: Simple Standard for Sharing Ontology Mappings",
       href: "https://mapping-commons.github.io/sssom/",
       publisher: "Cornell University",
+    },
+    "Organising Libraries of Master Data": {
+      title:
+        "Organising libraries of master data: A knowledge framework for setting up and managing master data libraries",
+      href: "https://semmtech.com/",
+      publisher: "Semmtech",
     },
   },
 

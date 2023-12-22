@@ -1,0 +1,42 @@
+
+@prefix rdf:                <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:               <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:                <http://www.w3.org/2002/07/owl#> .
+@prefix sh:                 <http://www.w3.org/ns/shacl#> .
+@prefix xsd:                <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos:               <http://www.w3.org/2004/02/skos/core#> .
+@prefix dct:                <http://purl.org/dc/terms/> .
+@prefix dcat:               <http://www.w3.org/ns/dcat3> .
+@prefix imbor:              <https://data.crow.nl/imbor/def/> .
+@prefix imbor-term:         <https://data.crow.nl/imbor/term/> .
+@prefix imbor-domeinwaarde: <https://data.crow.nl/imbor/id/domeinwaarden/> .
+@prefix nen2767:            <https://data.nen.nl/nen2767-4/def/> .
+@prefix nen2767-term:       <https://data.nen.nl/nen2767-4/term/> .
+@prefix void:               <http://rdfs.org/ns/void#> .
+@prefix nen2660:            <https://w3id.org/nen2660/def#> .
+
+## Conceptual / Logical
+
+nen2767:  rdf:type              owl:Ontology ;
+        dct:conformsTo          <https://w3id.org/nen2660/def> ;
+        owl:versionInfo         "1.6" ;
+        .
+
+imbor:  rdf:type                owl:Ontology ;
+        dct:conformsTo          <https://w3id.org/nen2660/def> ;
+        owl:versionInfo         "2022" ;
+        .       
+
+
+:imbor_object_nen2767-4_matter    rdf:type    owl:Ontology, void:Linkset ;
+        dct:title       "Link tussen IMBOR Objecttypen en NEN2767-4 materialen"@nl ;
+        dct:description "Handmatig voorbeeld van een link tussen de twee kernmodellen o.b.v. expert judgement"@nl ;
+        dct:publisher   "Stichting CROW"@nl ;
+        dct:issued      "2023-12-24"^^xsd:date;   
+        owl:versionInfo "1.0.0" ;
+        owl:imports     imbor:, nen2767: ;
+        .
+
+imbor:b193d52e-0243-4e0e-9f90-236edb35c624
+        nen2660:consistsOf
+                nen2767:93 .

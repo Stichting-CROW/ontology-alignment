@@ -11,7 +11,7 @@ The matching process in essence
 </figcaption>
 </figure>
 
-The process in essence is fairly straightforward. It starts with two [=ontologies=] that need [=matching=] because of a [heterogeneity problem](#heterogeneity-problem). The intended use of the [=alignment=], in combination with the heterogeneity problem results in a descision for 1) the [matching method](#matching-methods) and 2) the [level(s)](#alignment-levels) at which the [=alignments=] are made. When the [=ontologies=] are identified and the kind of problem is clear, the actual [=ontology matching=] can be conducted. The matching will result in an [=ontology alignment=], which consists of a set of [=correspondence=]s. the [=alignment=] can be seen as a [=mapping=] from one [=ontology=] to another (directed), consisting of a set of [=mapping rule=]s.
+The process in essence is fairly straightforward. It starts with two [=ontologies=] that need [=matching=] because of a [heterogeneity problem](#heterogeneity-problem). The intended use of the [=linkset=], in combination with the heterogeneity problem results in a descision for 1) the [matching method](#matching-methods) and 2) the [level(s)](#alignment-levels) at which the [=linksets=] are made. When the [=ontologies=] are identified and the kind of problem is clear, the actual [=ontology matching=] can be conducted. The matching will result in an [=ontology alignment=], which consists of a set of [=correspondence=]s. the [=alignment=] can be seen as a [=mapping=] from one [=ontology=] to another (directed), consisting of a set of [=mapping rule=]s.
 
 To illustrate the process and the endresult, we make use of a real life example situation regarding two [=ontologies=] about the build environment. Specifically about maintaining public space.
 
@@ -30,7 +30,7 @@ There are two organisations that manage an [=ontology=] within the domain of pub
 > </figure>
 
 > NOTE
-> This example is nice and simple. It’s certain that real life data is considerably more complex! It might not be immediately obvious how to apply this lessons. The [[Alignment format]] and [[EDOAL]] are well documented and should be sufficient to suit all needs. But one should be cautious about complicating the [=alignments=]. Usually, a simple [=alignment=] already solves a significant part of the problems. Therefore, think carefully about whether it really needs to be that complicated.
+> This example is nice and simple. It’s certain that real life data is considerably more complex! It might not be immediately obvious how to apply this lessons. But one should be cautious about complicating the [=linksets=]. Usually, a simple [=linkset=] already solves a significant part of the problems. Therefore, think carefully about whether it really needs to be that complicated.
 
 ### Aligning the terms
 
@@ -41,7 +41,7 @@ Below is the IMBOR vocabulary [=ontology=] with one entity (`imbor-term:10f4ea25
 ```turtle
 imbor-term:
         a             owl:Ontology ;
-        rdfs:comment  "Dit normatieve gedeelte betreft de vocabulair van IMBOR"@nl ;
+        rdfs:comment  "Dit normatieve gedeelte betreft de vocabulaire van IMBOR"@nl ;
         rdfs:label    "IMBOR Vocabulaire"@nl ;
         .
 
@@ -53,7 +53,7 @@ imbor-term:10f4ea25-70d7-4e3a-9a05-d7be8dfb0e36
         .
 ```
 
-Next up, the NEN2767-4 vocabulary [=ontology=] with one entity (`nen2676-term:BN` is the identifier for "Spuisluis" (English: "Drainage sluice"):
+Next up, the NEN2767-4 vocabulary [=ontology=] with one entity (`nen2676-term:BN` is the identifier for "Spuisluis") (English: "Drainage sluice"):
 
 ```turtle
 nen2767-term:
@@ -71,67 +71,49 @@ nen2676-term:BN
 
 We can see that there are two terms that are related. From first perspective it seems that the NEN2676-4 term "Spuisluis" is more specific than the IMBOR term "Sluis.
 
-Because the intended use is in (spoken) natural language and there is a [=terminological heterogeneity=] problem, we can decide that we make the [=alignment=] on the [=terminological level=] and use [=expert-judgement=] as a method. If we run the matching process we see a [=correspondence=] between the two terms. To express this in the [[alignment format]] we have to declare that the two [=ontologies=] involved are in scope via `align:Ontology`, where to find them via `align:location` and tell how to interpreted them via `align:formalism`. In this case both are expressed in [[SKOS-primer]].
+Because the intended use is in (spoken) natural language and there is a [=terminological heterogeneity=] problem, we can decide that we make the [=alignment=] on the [=terminological level=] and use [=expert-judgement=] as a method. If we run the matching process we see a [=correspondence=] between the two terms. To express this we have to declare which two [=ontologies=] are in scope. This is done via pointing to an `owl:Ontology`. Then we declare which version of set [=ontology=] is being used, via `owl:versionInfo`. And lastly how to interpreted them via `dct:conformsTo`. In this case both are expressed in [[SKOS-primer]].
 
 ```turtle
-nen2767-term:
-        a               align:Ontology ;
-        align:location  "file:ex_ont_2767-4.ttl";
-        align:formalism [   a   align:Formalism ;
-                            align:name "SKOS"@en ;
-                            align:uri "http://www.w3.org/2004/02/skos/core#" ] ;
+nen2767-term:  rdf:type         owl:Ontology ;
+        owl:versionInfo         "1.6" ;
+        dct:conformsTo          <http://www.w3.org/2004/02/skos/core#> ;
         .
 
-imbor-term:
-        a               align:Ontology ;
-        align:location  "file:ex_ont_imbor.ttl";
-        align:formalism [   a   align:Formalism ;
-                            align:name "SKOS"@en ;
-                            align:uri "http://www.w3.org/2004/02/skos/core#" ] ;
-        .
+imbor-term:  rdf:type           owl:Ontology ;
+        owl:versionInfo         "2022" ;
+        dct:conformsTo          <http://www.w3.org/2004/02/skos/core#> ;
+        .   
 ```
 
-The next step is to create the actual [=alignment=] via `align:Alignment` and populating it by creating a [=correspondence=] via an `align:Cell`. In this case there are two [=ontologies=] and there is one 'mapping' called `:mappingTerm_sluis_spuisluis`. This mapping cell states that there is one entity (or: term) from IMBOR that subsumes one from NEN2767-4. Via `align:semantics` (which is a free text field) we can give further information about the semantics of the relation. In this case `skos:narrowMatch` is used to specify the exact semantics. And lastly via `align:measure` the confidence that the relation holds between the first and the second entity, which in this case is a solid `1` (as confidence as it gets).
+The next step is to create the actual [=link=] via a [[SKOS-primer]] predicate. This mapping states that there is one entity (or: term) from IMBOR that is a narrow match to one from NEN2767-4. The express the exact semantics, `skos:narrowMatch` is used. 
 
 ```turtle
-:imbor-term_nen2767-4-term
-        a               align:Alignment ;
-        align:uri1      imbor-term: ;
-        align:onto1     imbor-term: ;
-        align:uri2      nen2767-term: ;
-        align:onto2     nen2767-term: ;
-        align:map       :mappingTerm_sluis_spuisluis ;
-        .
-
-:mappingTerm_sluis_spuisluis
-        a               align:Cell ;
-        align:entity1   imbor-term:10f4ea25-70d7-4e3a-9a05-d7be8dfb0e36 ;
-        align:entity2   nen2676-term:BN ;
-        align:relation  align:subsumes ;
-        align:semantics skos:narrowMatch ;
-        align:measure   "1.0"^^xsd:float ;
-        .
+imbor-term:10f4ea25-70d7-4e3a-9a05-d7be8dfb0e36 
+        skos:narrowMatch 
+                nen2676-term:BN
 ```
 
 > ADVISEMENT "Using predefined semantics"
 >
-> To ensure maximum understanding, it is part of this best practice to specify the value for `align:semantics` with the [predicates](https://mapping-commons.github.io/sssom/spec/#common-mapping-predicates) selected by [[SSSOM]].
+> To ensure maximum understanding, it is part of this best practice to specify the value for the predicate with the [predicates](https://mapping-commons.github.io/sssom/spec/#common-mapping-predicates) selected by [[SSSOM]].
 
-To ensure the best interpretation _and_ reuse of the [=alignment=], the [[alignment format]] allows to declare extra information about the [=alignment=]. In this case `align:level` is used to declare that this is a `level 0` [=alignment=] which stands for _"alignments in which matched entities are identified by URIs"_. Furthermore it is needed to provide some provenance, authoring and versioning information. The [Alignment API](https://moex.gitlabpages.inria.fr/alignapi/labels.html) provides a minimal set based on [[DCTERMS]], which consists of a version description via `owl:versionInfo`, a title via `dct:title`, an indication of the matching method and description via `dct:description`,, a publisher via `dct:publisher` and a publish date via `dct:date`.
+To ensure the best interpretation _and_ reuse of the [=alignment=] (and other [=linksets=]), some extra information is to be declared about the [=alignment=]. In this case `dct:title` is used name the set and `dct:description` is used to provide an indication of the matching method and a description. Furthermore it is needed to provide some provenance, authoring and versioning information. Therefore a publisher is provided via `dct:publisher` and a publish date via `dct:issued`. Similar to the [=ontologies=] `dct:conformsTo` is used to declare the formal language in which the [=linkset=] is written. This also identifies that the [=alignment=] is on the [=terminological level=] ([[SKOS-primer]]). `dct:instructionalMethod` is used in this best practice to state the intended use of the [=linkset=]. Lastly `owl:versionInfo` defines the version of the [=linkset=] and an `owl:imports` statement is then used to reference the used [=ontologies=] from the last step, whose meaning is considered to be part of the meaning of the importing ontology.
 
 ```turtle
-:imbor-term_nen2767-4-term
-        a               align:Alignment ;
-        owl:versionInfo "0.1"@nl ;
-        dct:title       "IMBOR en NEN2767-4 vocabulaire mapping"@nl ;
-        dct:description "Handmatige voorbeeld mapping van de twee vocabulaires o.b.v. expert judgement"@nl ;
-        dct:publisher   "Stichting CROW"@nl ;
-        dct:date        "2022-12-31"^^xsd:date;
-        align:level     "0" ;
+:imbor-term_nen2767-4-term    rdf:type    owl:Ontology, void:Linkset ;
+        dct:title               "IMBOR en NEN2767-4 vocabulaire mapping"@nl ;
+        dct:description         "Handmatige voorbeeld mapping van de twee vocabulaires o.b.v. expert judgement"@nl ;
+        dct:publisher           "Stichting CROW"@nl ;
+        dct:issued              "2022-12-31"^^xsd:date ;
+        dct:conformsTo          <http://www.w3.org/2004/02/skos/core#> ;  
+        dct:instructionalMethod "Deze linkset mag alleen gebruikt worden in de context van de Ontology Alignment whitepaper t.b.v. de vergelijking van twee termen"@nl ; 
+        owl:versionInfo         "1.0.0" ;
+        owl:imports             imbor-term:, nen2767-term: ;
         .
 ```
 
-Now we have expressed in [[Turtle]], making use of the W3C standards [[RDF11-concepts]], [[OWL2-primer]], [[SKOS-primer]] and the [[alignment format]] that two terms from different [=ontologies=] have a "has narrower match" relation with each other. In this case two assetmanagers who use different vocabularies can logically explain how their words relate. This is shown in a basic diagram below:
+>ADVISEMENT
+>We also declare that this [=linkset=] is a `void:Linkset`. While we do not use the [[VoID]] standard anywhere else, the specific semantics of a `void:Linkset` seperates the used `owl:Ontology`s in the whole process. 
 
 <figure>
 
@@ -142,74 +124,12 @@ The basis components of the terms alignment in diagram form (without aspect prop
 </figcaption>
 </figure>
 
-Lastly, we add the necessary information to be compliant with the [[VoID]] standard. We declare that the two [=ontologies=] are `void:Dataset`s, that the [=alignment=] is an `void:Linkset` and via `void:feature` we declare that the [[turtle]] format is used. We conclude by describing the relation between the `void:Dataset`s and the `void:Linkset` via `void:target`. The complete result is shown below in [[Turtle]]:
-
-```turtle
-@prefix rdf:                <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix rdfs:               <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix owl:                <http://www.w3.org/2002/07/owl#> .
-@prefix skos:               <http://www.w3.org/2004/02/skos/core#> .
-@prefix dct:                <http://purl.org/dc/terms/> .
-@prefix imbor:              <https://data.crow.nl/imbor/def/> .
-@prefix imbor-term:         <https://data.crow.nl/imbor/term/> .
-@prefix imbor-domeinwaarde: <https://data.crow.nl/imbor/id/domeinwaarden/> .
-@prefix nen2767:            <https://data.nen.nl/nen2767-4/def/> .
-@prefix nen2767-term:       <https://data.nen.nl/nen2767-4/term/> .
-@prefix void:               <http://rdfs.org/ns/void#> .
-@prefix align:              <http://knowledgeweb.semanticweb.org/heterogeneity/alignment#> .
-
-nen2767-term:
-        a                align:Ontology void:Dataset ;
-        void:feature    <http://www.w3.org/ns/formats/Turtle> ;
-        align:location  "file:ex_ont_2767-4.ttl";
-        align:formalism [   a   align:Formalism ;
-                            align:name "SKOS"@en ;
-                            align:uri "http://www.w3.org/2004/02/skos/core#" ] ;
-        .
-
-imbor-term:
-        a               align:Ontology void:Dataset ;
-        void:feature    <http://www.w3.org/ns/formats/Turtle> ;
-        align:location  "file:ex_ont_imbor.ttl";
-        align:formalism [   a   align:Formalism ;
-                            align:name "SKOS"@en ;
-                            align:uri "http://www.w3.org/2004/02/skos/core#" ] ;
-        .
-
-:imbor-term_nen2767-4-term
-        a               align:Alignment, void:Linkset ;
-        void:feature    <http://www.w3.org/ns/formats/Turtle> ;
-        owl:versionInfo "0.1"@nl ;
-        dct:title       "IMBOR en NEN2767-4 vocabulaire mapping"@nl ;
-        dct:description "Handmatige voorbeeld mapping van de twee vocabulaires o.b.v. expert judgement"@nl ;
-        dct:publisher   "Stichting CROW"@nl ;
-        dct:date        "2022-12-31"^^xsd:date;
-        align:level     "0" ;
-        align:uri1      imbor-term: ;
-        align:onto1     imbor-term: ;
-        void:target     imbor-term: ;
-        align:uri2      nen2767-term: ;
-        align:onto2     nen2767-term: ;
-        void:target     nen2767-term: ;
-        align:map       :mappingTerm_sluis_spuisluis ;
-        .
-
-:mappingTerm_sluis_spuisluis
-        a               align:Cell ;
-        align:entity1   imbor-term:10f4ea25-70d7-4e3a-9a05-d7be8dfb0e36 ;
-        align:entity2   nen2676-term:BN ;
-        align:relation  align:subsumes ;
-        align:semantics skos:narrowMatch ;
-        align:measure   "1.0"^^xsd:float ;
-        .
-```
-
 ### Aligning the conceptuals
 
 Aligning terms is a perfect way to start a complete [=alignment=]. It is relatively easy and provides a common ground for users. But when there is more to be wished for regarding other intended uses we need to be more expressive. This is definitely the case when machines get involved. As seen before the second wish for this example was an [=alignment=] of classes so that software vendors for assetmanagement applications can use the [=ontologies=] in conjunction in their software.
 
 > ADVISEMENT
-> It is advisable to start with creating an [=alignment=] on the [=terminological level=], to use this as base to create a more expressive [=alignment=] on the [=conceptual level=] and/or [=structural level=]. This is _not_ necessary.
+> It is advisable to start with creating an [=alignment=] on the [=terminological level=], to use this as base to create a more expressive [=alignment=] on the [=conceptual level=]. This is _not_ necessary.
 
 Let's have a look at the different [=ontologies=] involved. First up we have the IMBOR [=ontology=]. Below is shown that `imbor:` is an `owl:Ontology`. In this case [[SHACL]] is used as a constraint language to further specify asset types. This shows because there is a `sh:NodeShape` (which is also a `rdfs:Class`) with the label "Sluis" (English: "Sluice") and is identified by `imbor:b193d52e-0243-4e0e-9f90-236edb35c624`. Furthermore there is `sh:PropertyShape` that specifies that every "Sluis" has to have at least one `rdf:Property` called "Type". And the value for this property should be an instance of the class with the label "SluisType". There is one instance specified, namely "Spuisluis" (English: "Drainage sluice").
 
@@ -262,7 +182,7 @@ imbor-domeinwaarde:2d9771b5-d707-47f8-9577-898f05eadd08
         .
 ```
 
-Next up, the NEN2767-4 [=ontology=] with one entity (nen2676:BN is the identifier for "Spuisluis" (English: "Drainage sluice"):
+Next up, the NEN2767-4 [=ontology=] with one entity (nen2676:BN is the identifier for "Spuisluis" (English: "Drainage sluice")):
 
 ```turtle
 nen2676:
@@ -277,90 +197,73 @@ nen2676:BN
         skos:definition  "Kunstwerk met een beweegbare waterkering, dat de verbinding vormt tussen twee wateren."@nl ;
         skos:prefLabel   "Spuisluis"@nl ;
         .
+
+nen2676:93
+        rdf:type        rdfs:Class ;
+        skos:prefLabel  "Cementbeton"@nl .
 ```
 
 We can see that there are two classes that are related, but that there is more explicit information available to make the [=alignment=] more precise. From first perspective it seems that the NEN2676-4 class "Spuisluis", should be related to the IMBOR class "Sluis", but with the condition that the value of the property "SluisType" is "Spuisluis".
 
-Because the intended use is usage in conjunction within software there is a [=semantic heterogeneity=] problem. Therefore we can decide that we make the [=alignment=] (at least) on the [=conceptual level=] and use [=expert-judgement=] as a method. If we run the [=matching=] process we see a [=correspondence=] between the two classes, but with a constraint. To express this in the [[alignment format]] we have to declare that the two [=ontologies=] involved are in scope via `align:Ontology`, where to find them via `align:location` and tell how to interpreted them via `align:formalism`. In this case the NEN2676 is expressed in [[RDF-Schema]] (RDFS) as implemented by the [[NEN2660-2]] and IMBOR is expressed in [[RDF-Schema]] (RDFS) and [[SHACL]] as implemented by the [[NEN2660-2]].
+Because the intended use is usage in conjunction within software there is a [=semantic heterogeneity=] problem. Therefore we can decide that we make the [=alignment=] on the [=conceptual level=] and use [=expert-judgement=] as a method. If we run the [=matching=] process we see a [=correspondence=] between the two classes, but with a constraint. To express this we have to declare that the two [=ontologies=] involved are in scope via `owl:Ontology` and tell how to interpreted them via `dct:conformsTo`. In this case the NEN2676 is expressed in [[RDF-Schema]] (RDFS) as implemented by the [[NEN2660-2]] and IMBOR is expressed in [[RDF-Schema]] (RDFS) and [[SHACL]] as implemented by the [[NEN2660-2]].
 
 ```turtle
-nen2767:
-        a               align:Ontology ;
-        align:location  "file:ex_ont_2767-4.ttl";
-        align:formalism [   a   align:Formalism ;
-                            align:name "NEN2660-2 RDFS"@en ;
-                            align:uri "https://w3id.org/nen2660/def" ] ;
+nen2767:  rdf:type              owl:Ontology ;
+        owl:versionInfo         "1.6" ;
+        dct:conformsTo          <https://w3id.org/nen2660/def> ;
         .
 
-imbor:
-        a                align:Ontology ;
-        align:location  "file:ex_ont_imbor.ttl";
-        align:formalism [   a   align:Formalism ;
-                            align:name "NEN2660-2 RDFS/SHACL"@en ;
-                            align:uri "https://w3id.org/nen2660/def" ] ;
-        .
+imbor:  rdf:type                owl:Ontology ;
+        owl:versionInfo         "2022" ;
+        dct:conformsTo          <https://w3id.org/nen2660/def> ;
+        .    
 ```
 
-The next step is to create the actual [=alignment=] via `align:Alignment` and populating it by creating a [=correspondence=] via an `align:Cell`. In this case there are two [=ontologies=] and there is one 'mapping' called `:mapping_sluis_spuisluis`. In contrary to the [terms example](#aligning-the-terms) it is not sufficient to use the [[alignment format]], in this case the extension [[EDOAL]] is needed. To properly use [[EDOAL]] we have to express the entities from the involved [=ontologies=] according to the [[EDOAL]] ontology. This done by saying that IMBOR "Sluis", "SluisType" and "Spuisluis" are instances of respectively `edoal:Class`, `edoal:Property` and `edoal:Instance`. Furthermore, NEN2747-4 "Spuisluis" is also an instance of `edoal:Class`.
+The next step is to create the actual [=alignment=]. In this case there are two [=ontologies=] and there is one 'mapping' called `:mapping_sluis_spuisluis`. In contrary to the [terms example](#aligning-the-terms) it is not sufficient to use the [[SKOS-primer]] semantics, in this case the formal semantics of [[OWL2-primer]] are needed. 
 
-After this we can further comprise the `:mapping_sluis_spuisluis` as a complete mapping cell. This mapping cell states that there is `align:entity2` which is the NEN2767-4 class and `align:entity1` which is a blanknode which in turn states that on the class "Sluis" (`imbor:b193d52e-0243-4e0e-9f90-236edb35c624`) there is a 'property value restriction' on the property "SluisType" (`imbor:e3e112b3-e46f-45c4-b2c9-b152e6f805a1`) with the value "Spuisluis" (`imbor-domeinwaarde:2d9771b5-d707-47f8-9577-898f05eadd08`).
+- A class is created: `mapping_sluis_spuisluis`. This is a non-descriptive name and this _may_ be a blanknode.   
+  - This class has two properties, the first is `owl:intersectionOf`. This property links a class to a list of class descriptions. 
+    - In this example there are two in this list, the first being "Sluis" (`imbor:b193d52e-0243-4e0e-9f90-236edb35c624`) and the second a blanknode. 
+    - This blanknode is a `owl:Restriction` (class) and has in turn two properties. 
+      - The first (`owl:onProperty`) states that the restriction holds for the property "type" (`imbor:e3e112b3-e46f-45c4-b2c9-b152e6f805a1`) 
+      - and the second that this should have the value "Spuisluis" (`imbor-domeinwaarde:2d9771b5-d707-47f8-9577-898f05eadd08`). 
+  - This second property of `mapping_sluis_spuisluis` is `owl:equivalentClass`, the meaning of which is that the two have exactly the same set of individuals. In this example "Spuisluis" (`nen2767:BN`) is used. 
 
-Via `align:semantics` (which is a free text field) we can give further information about the semantics of the relation. In this case `owl:equivalentClass` is used to specify the exact semantics. And lastly via `align:measure` the confidence that the relation holds between the first and the second entity, which in this case is `1` (as confidence as it gets).
+The above states in formal [[OWL2-primer]] that individuals of the class NEN2767 "Spuisluis" may be considered as the same individuals from the IMBOR "Sluis" class, but only if the have the value "Spuisluis" on the property "type". 
 
 ```turtle
-:imbor_nen2767-4
-        a               align:Alignment ;
-        align:uri1      imbor: ;
-        align:onto1     imbor: ;
-        align:uri2      nen2767: ;
-        align:onto2     nen2767: ;
-        align:map       :mapping_sluis_spuisluis ;
-        .
-
-imbor:b193d52e-0243-4e0e-9f90-236edb35c624
-        a   edoal:Class .
-imbor:e3e112b3-e46f-45c4-b2c9-b152e6f805a1
-        a   edoal:Property .
-imbor-domeinwaarde:2d9771b5-d707-47f8-9577-898f05eadd08
-        a   edoal:Instance .
-nen2676:BN
-        a   edoal:Class .
-
 :mapping_sluis_spuisluis
-        a               align:Cell ;
-        align:entity1   [ a edoal:Class ;
-                            edoal:and   imbor:b193d52e-0243-4e0e-9f90-236edb35c624 ;
-                            edoal:and   [ a edoal:propertyValueRestriction ;
-                                        edoal:property  imbor:e3e112b3-e46f-45c4-b2c9-b152e6f805a1 ;
-                                        edoal:value     imbor-domeinwaarde:2d9771b5-d707-47f8-9577-898f05eadd08
-                                        ]
-                        ] ;
-        align:entity2   nen2676:BN ;
-        align:relation  align:equivalent ;
-        align:semantics owl:equivalentClass ;
-        align:measure   "1.0"^^xsd:float ;
+        owl:intersectionOf (
+                imbor:b193d52e-0243-4e0e-9f90-236edb35c624 
+                [ a owl:Restriction ;
+                owl:onProperty imbor:e3e112b3-e46f-45c4-b2c9-b152e6f805a1 ;
+                owl:hasValue imbor-domeinwaarde:2d9771b5-d707-47f8-9577-898f05ead
+                ] 
+        ) ;
+        owl:equivalentClass nen2676:BN ;
         .
 ```
 
 > ADVISEMENT "Using predefined semantics"
 >
-> To ensure maximum understanding, it is part of this best practice to specify the value for `align:semantics` with the [predicates](https://mapping-commons.github.io/sssom/spec/#common-mapping-predicates) selected by [[SSSOM]].
+> To ensure maximum understanding, it is part of this best practice to specify the alignment via the [[OWL2-primer]] constructs.
 
-To ensure the best interpretation _and_ reuse of the [=alignment=], the [[alignment format]] allows to declare extra information about the [=alignment=]. In this case `align:level` is used to declare that this is a `level 2EDOAL` [=alignment=] which stands for _"more structured entities that may be represented in RDF. EDOAL mandates level 2 alignments."_. Furthermore it is needed to provide some provenance, authoring and versioning information. The [Alignment API](https://moex.gitlabpages.inria.fr/alignapi/labels.html) provides a minimal set based on [[DCTERMS]], which consists of a version description via `owl:versionInfo`, a title via `dct:title`, an indication of the matching method and description via `dct:description`,, a publisher via `dct:publisher` and a publish date via `dct:date`.
+To ensure the best interpretation _and_ reuse of the [=alignment=] (and other [=linksets=]), some extra information is to be declared about the [=alignment=]. In this case `dct:title` is used name the set and `dct:description` is used to provide an indication of the matching method and a description. Furthermore it is needed to provide some provenance, authoring and versioning information. Therefore a publisher is provided via `dct:publisher` and a publish date via `dct:issued`. Similar to the [=ontologies=] `dct:conformsTo` is used to declare the formal language in which the [=linkset=] is written. This also identifies that the [=alignment=] is on the [=conceptual level=] ([[OWL2-primer]]).         `dct:instructionalMethod` is used in this best practice to state the intended use of the [=linkset=]. Lastly `owl:versionInfo` defines the version of the [=linkset=] and an `owl:imports` statement is then used to reference the used [=ontologies=] from the last step, whose meaning is considered to be part of the meaning of the importing ontology.
 
 ```turtle
-:imbor_nen2767-4
-        a               align:Alignment ;
-        owl:versionInfo "0.1"@nl ;
-        dct:title       "IMBOR en NEN2767-4 ontologie mapping"@nl ;
-        dct:description "Handmatige voorbeeld mapping van de twee kernmodellen o.b.v. expert judgement"@nl ;
-        dct:publisher   "Stichting CROW"@nl ;
-        dct:date        "2023-01-03"^^xsd:date;
-        align:level     "2EDOAL" ;
+:imbor_nen2767-4    rdf:type    owl:Ontology, void:Linkset ;
+        dct:title               "IMBOR en NEN2767-4 ontologie mapping"@nl ;
+        dct:description         "Handmatige voorbeeld mapping van de twee kernmodellen o.b.v. expert judgement"@nl ;
+        dct:publisher           "Stichting CROW"@nl ;
+        dct:issued              "2023-01-03"^^xsd:date;   
+        dct:conformsTo          <http://www.w3.org/2002/07/owl#> ;
+        dct:instructionalMethod "Deze linkset mag alleen gebruikt worden in de context van de Ontology Alignment whitepaper t.b.v. de vergelijking van twee classes"@nl ;      
+        owl:versionInfo         "1.0.0 ;
+        owl:imports             imbor:, nen2767: ;
         .
 ```
 
-Now we have expressed in [[Turtle]], making use of the W3C standards [[RDF11-concepts]], [[RDF-Schema]], [[OWL2-primer]], [[SHACL]] and the [[alignment format]], including the extension [[EDOAL]] and the [[NEN2660-2]] that two classes from different [=ontologies=] have a "equivalent" relation with each other. In this case software used by assetmanagers who use standards (e.g. IMBOR and NEN2767-4) in conjunction can logically logically deduct that instances are the same. This is shown in a basic diagram below:
+Now we have expressed in [[Turtle]], making use of the W3C standards [[RDF11-concepts]], [[RDF-Schema]], [[OWL2-primer]] and the [[NEN2660-2]] that two classes from different [=ontologies=] have a "equivalent" relation with each other. In this case software used by assetmanagers who use standards (e.g. IMBOR and NEN2767-4) in conjunction can logically logically deduct that instances are the same. This is shown in a basic diagram below:
 
 <figure>
 
@@ -371,79 +274,102 @@ The basis components of the conceptual/structural alignment in diagram form (wit
 </figcaption>
 </figure>
 
-Lastly, we add the necessary information to be compliant with the [[VoID]] standard. We declare that the two [=ontologies=] are `void:Dataset`s, that the [=alignment=] is an `void:Linkset` and via `void:feature` we declare that the [[turtle]] format is used. We conclude by describing the relation between the `void:Dataset`s and the `void:Linkset` via `void:target`. The complete result is shown below in [[Turtle]]:
+>ADVISEMENT
+>We also declare that this [=linkset=] is a `void:Linkset`. While we do not use the [[VoID]] standard anywhere else, the specific semantics of a `void:Linkset` seperates the used `owl:Ontology`s in the whole process.
+
+The complete result is shown below in [[Turtle]]:
 
 ```turtle
 @prefix rdf:                <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs:               <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix owl:                <http://www.w3.org/2002/07/owl#> .
+@prefix sh:                 <http://www.w3.org/ns/shacl#> .
+@prefix xsd:                <http://www.w3.org/2001/XMLSchema#> .
 @prefix skos:               <http://www.w3.org/2004/02/skos/core#> .
 @prefix dct:                <http://purl.org/dc/terms/> .
 @prefix imbor:              <https://data.crow.nl/imbor/def/> .
-@prefix imbor-term:         <https://data.crow.nl/imbor/term/> .
 @prefix imbor-domeinwaarde: <https://data.crow.nl/imbor/id/domeinwaarden/> .
 @prefix nen2767:            <https://data.nen.nl/nen2767-4/def/> .
-@prefix nen2767-term:       <https://data.nen.nl/nen2767-4/term/> .
 @prefix void:               <http://rdfs.org/ns/void#> .
-@prefix align:              <http://knowledgeweb.semanticweb.org/heterogeneity/alignment#> .
-@prefix edoal:              <http://ns.inria.org/edoal/1.0/> .
 
-nen2767:
-        a               align:Ontology, void:Dataset ;
-        void:feature    <http://www.w3.org/ns/formats/Turtle> ;
-        align:location  "file:ex_ont_2767-4.ttl";
-        align:formalism [   a   align:Formalism ;
-                            align:name "NEN2660-2 RDFS"@en ;
-                            align:uri "https://w3id.org/nen2660/def" ] ;
+nen2767:  rdf:type              owl:Ontology ;
+        owl:versionInfo         "1.6" ;
+        dct:conformsTo          <https://w3id.org/nen2660/def> ;
         .
 
-imbor:
-        a               align:Ontology, void:Dataset ;
-        void:feature    <http://www.w3.org/ns/formats/Turtle> ;
-        align:location  "file:ex_ont_imbor.ttl";
-        align:formalism [   a   align:Formalism ;
-                            align:name "NEN2660-2 RDFS/SHACL"@en ;
-                            align:uri "https://w3id.org/nen2660/def" ] ;
-        .
+imbor:  rdf:type                owl:Ontology ;
+        owl:versionInfo         "2022" ;
+        dct:conformsTo          <https://w3id.org/nen2660/def> ;
+        .       
 
-:imbor_nen2767-4
-        a               align:Alignment, void:Linkset ;
-        void:feature    <http://www.w3.org/ns/formats/Turtle> ;
-        owl:versionInfo "0.1"@nl ;
-        dct:title       "IMBOR en NEN2767-4 ontologie mapping"@nl ;
-        dct:description "Handmatige voorbeeld mapping van de twee kernmodellen o.b.v. expert judgement"@nl ;
-        dct:publisher   "Stichting CROW"@nl ;
-        dct:date        "2023-01-03"^^xsd:date;
-        align:level     "2EDOAL" ;
-        align:uri1      imbor: ;
-        align:onto1     imbor: ;
-        void:target     imbor: ;
-        align:uri2      nen2767: ;
-        align:onto2     nen2767: ;
-        void:target     nen2767: ;
-        align:map       :mapping_sluis_spuisluis ;
+:imbor_nen2767-4    rdf:type    owl:Ontology, void:Linkset  ;
+        dct:title               "IMBOR en NEN2767-4 ontologie mapping"@nl ;
+        dct:description         "Handmatige voorbeeld mapping van de twee kernmodellen o.b.v. expert judgement"@nl ;
+        dct:publisher           "Stichting CROW"@nl ;
+        dct:issued              "2023-01-03"^^xsd:date;   
+        dct:conformsTo          <http://www.w3.org/2002/07/owl#> ;   
+        dct:instructionalMethod "Deze linkset mag alleen gebruikt worden in de context van de Ontology Alignment whitepaper t.b.v. de vergelijking van twee classes"@nl ;   
+        owl:versionInfo         "1.0.0" ;
+        owl:imports             imbor:, nen2767: ;
         .
-imbor:b193d52e-0243-4e0e-9f90-236edb35c624
-        a   edoal:Class .
-imbor:e3e112b3-e46f-45c4-b2c9-b152e6f805a1
-        a   edoal:Property .
-imbor-domeinwaarde:2d9771b5-d707-47f8-9577-898f05eadd08
-        a   edoal:Instance .
-nen2676:BN
-        a   edoal:Class .
 
 :mapping_sluis_spuisluis
-        a               align:Cell ;
-        align:entity1   [ a edoal:Class ;
-                            edoal:and   imbor:b193d52e-0243-4e0e-9f90-236edb35c624 ;
-                            edoal:and   [ a edoal:propertyValueRestriction ;
-                                        edoal:property  imbor:e3e112b3-e46f-45c4-b2c9-b152e6f805a1 ;
-                                        edoal:value     imbor-domeinwaarde:2d9771b5-d707-47f8-9577-898f05eadd08
-                                        ]
-                        ] ;
-        align:entity2   nen2676:BN ;
-        align:relation  align:equivalent ;
-        align:semantics owl:equivalentClass ;
-        align:measure   "1.0"^^xsd:float ;
+        owl:intersectionOf (
+                imbor:b193d52e-0243-4e0e-9f90-236edb35c624 
+                [ a owl:Restriction ;
+                owl:onProperty imbor:e3e112b3-e46f-45c4-b2c9-b152e6f805a1 ;
+                owl:hasValue imbor-domeinwaarde:2d9771b5-d707-47f8-9577-898f05ead
+                ] 
+        ) ;
+        owl:equivalentClass nen2676:BN ;
         .
 ```
+
+### Extending the conceptuals
+
+The second form of [=linkset=] is an [=extension=]. This is very similar to how the terms are aligned, but it works on the [=conceptual level=]. Below is the complete example. 
+
+First we have to declare which two [=ontologies=] are in scope. After this we want to say that an Sluice can consists of the material 'cementcrete'. Therefore we extend (or 'link') "Sluis" from IMBOR (`imbor:b193d52e-0243-4e0e-9f90-236edb35c624`) with the [[NEN2660-2]] property `nen2660:consistOf` and the value "Cementbeton" (`nen2767:93`). 
+
+To ensure the best interpretation _and_ reuse of the [=extension=], some extra information is to be declared about the [=extension=]. In this case `dct:title` is used name the set and `dct:description` is used to provide an indication of the matching method and a description. Furthermore it is needed to provide some provenance, authoring and versioning information. Therefore a publisher is provided via `dct:publisher` and a publish date via `dct:issued`. `dct:conformsTo` is used to declare the formal language in which the [=extension=] is written and `owl:versionInfo` defines the version of the [=extension=]. An `owl:imports` statement is then used to reference the used [=ontologies=] from the last step, whose meaning is considered to be part of the meaning of the importing ontology.
+
+> ADVISEMENT "Using predefined semantics"
+>
+> To ensure maximum understanding, it is part of this best practice to specify the extension via the [[NEN2660-2]] predicates.
+
+```turtle
+nen2767:  rdf:type              owl:Ontology ;
+        dct:conformsTo          <https://w3id.org/nen2660/def> ;
+        owl:versionInfo         "1.6" ;
+        .
+
+imbor:  rdf:type                owl:Ontology ;
+        dct:conformsTo          <https://w3id.org/nen2660/def> ;
+        owl:versionInfo         "2022" ;
+        .       
+
+imbor:b193d52e-0243-4e0e-9f90-236edb35c624
+        nen2660:consistsOf
+                nen2767:93 .
+
+:imbor_object_nen2767-4_matter    rdf:type    owl:Ontology, void:Linkset ;
+        dct:title       "Link tussen IMBOR Objecttypen en NEN2767-4 materialen"@nl ;
+        dct:description "Handmatig voorbeeld van een link tussen de twee kernmodellen o.b.v. expert judgement"@nl ;
+        dct:publisher   "Stichting CROW"@nl ;
+        dct:issued      "2023-12-24"^^xsd:date;   
+        owl:versionInfo "1.0.0" ;
+        owl:imports     imbor:, nen2767: ;
+        .
+```
+
+>ADVISEMENT
+>We also declare that this [=linkset=] is a `void:Linkset`. While we do not use the [[VoID]] standard anywhere else, the specific semantics of a `void:Linkset` seperates the used `owl:Ontology`s in the whole process. 
+
+<figure>
+
+![](img/extension-example-conceptual.drawio.png)
+
+<figcaption>
+The basis components of the extension in diagram form (without aspect properties)
+</figcaption>
+</figure>
