@@ -12,7 +12,7 @@ When making a governance plan or setting up the governance structure there are s
 
 - **_Technical standards_**
 
-  Technical agreements are, for example, agreements regarding the modelling practice so that it is possible to align the [=ontologies=] at all. Technical agreements are relatively easy to draw up rules for and there are already examples of them. In this best practice we advise [[turtle]] as syntax format, the [[NEN2660-2]] as technical guideline, [[SKOS-primer]] as expression format for the vocabulary, , [[OWL2-Primer]] as expression for the [=alignment=], [[RDF-schema]] and [[SHACL]] as expression format for the [=ontology=].
+  Technical agreements are, for example, agreements regarding the modelling practice so that it is possible to align the [=ontologies=] at all. Technical agreements are relatively easy to draw up rules for and there are already examples of them. In this best practice we advise to publish the [=linkset=] on a LinkedData platform and provide a [SPARQL endpoint](https://www.nationaalarchief.nl/onderzoeken/linked-open-data/sparql-interface), the [[NEN2660-2]] as technical guideline, [[SKOS-primer]] as expression format for the vocabulary, , [[OWL2-Primer]] as expression for the [=alignment=], [[RDF-schema]] and [[SHACL]] as expression format for the [=ontology=].
 
 - **_Modelling rules_**
 

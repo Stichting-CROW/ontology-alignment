@@ -18,6 +18,11 @@ var respecConfig = {
       company: "Semmtech",
       url: "https://semmtech.com/",
     },
+    {
+      name: "Thomas Mollema",
+      company: "Unafact",
+      url: "https://www.unafact.nl/",
+    },
   ],
   github: "https://github.com/Stichting-CROW/ontology-alignment",
   localBiblio: {

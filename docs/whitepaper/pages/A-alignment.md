@@ -22,7 +22,7 @@ The matching process in essence
 There are four different heterogeneity problems that can be considered, the last one ([=semiotic heterogeneity=]) is out of scope for this best practice.
 
 > DEF
-> <dfn>Syntactic heterogeneity</dfn> occurs when[=ontologies=] are not expressed in the same [=ontology=] language (e.g. XML, OWL).
+> <dfn>Syntactic heterogeneity</dfn> occurs when [=ontologies=] are not expressed in the same [=ontology=] language (e.g. XML-Schema, OWL).
 
 > DEF
 > <dfn>Terminological heterogeneity</dfn> occurs when different terms refer to the same entity or the same term describes different entities in different ontologies. This may be caused by the use of different natural languages (e.g. Paper vs. Papier), different technical languages (e.g. Paper vs. Memo), or the use of synonyms (Paper vs. Article).
@@ -40,7 +40,7 @@ _Adapted from [Ontology matching]_
 There is a whole [scientific community](http://www.ontologymatching.org/) about [=ontology matching=]. For this best practices the most important components are selected to create a practical implementation.
 
 > DEF
-> An <dfn data-lt="ontologies">Ontology</dfn> typically provides a model describing a domain of interest and a specification of the meaning of terms in that domain. Depending on the precision, the [=ontology=] encompasses several data and conceptual models, including, sets of terms, classifications, thesauri, the properties (attributes) that can be used to describe the entities, and the relationships between those things. An [=ontology=] does not contain actual data about instances of entities.
+> An <dfn data-lt="ontologies">Ontology</dfn> typically provides a model describing a domain of interest and a specification of the meaning of terms in that domain. Depending on the precision, the [=ontology=] encompasses several data and conceptual models, including, sets of terms, classifications, thesauri, the properties (attributes) that can be used to describe the entities, and the relationships between those things. An [=ontology=] does not (usually) contain actual data about instances of entities.
 
 > DEF
 > <dfn data-lt="matching">Ontology matching</dfn> is the process of finding correspondences between semantically related entities of different ontologies. These correspondences may stand for equivalence as well as other relations, such as consequence, subsumption, or disjointness, between [=ontology=] entities. [=Ontology=] entities, in turn, usually denote the named entities of ontologies, such as classes, properties or individuals. However, these entities may also be more complex expressions, such as formulas, concept definitions, queries or term building expressions.[=ontology matching=] results, called an [=ontology alignment=], can thus express with various degrees of precision the relations between the[=ontologies=]under consideration. [=Alignments=] can be used for various tasks, such as [=ontology=]merging, query answering, data translation or for browsing the semantic web.
@@ -130,3 +130,22 @@ Most of the literature focus on the use of algorithms and statistical analysis f
 
 > NOTE
 > In most cases a combination of these techniques will be used. Common practice is to generate a concept [=alignment=] with a combination of [=string-based matching=] and [=constraint-based matching=] techniques. And then present this to a domain expert who refines the [=alignment=] based on [=expert-judgement=].
+
+### Considerations
+
+Making a [=linkset=] and especially an [=alignment=] is not strictly a technical effort. This whitepaper describes a method to describe the actual links in a technical format. The substantive considerations are the hardest part. While this is not the focus of this whitepaper, there are some major considerations to take in account that are addressed here. 
+
+####  Multiple heterogeneity problems
+
+Considering the IMBOR and NEN2767-4 case, one can agree with the statement that there is a heterogeneity problem present. Pondering the application of the general approach of creating an [=alignment=] to IMBOR, it would be naïve however to assume [=semantic heterogeneity=] is the only face of the heterogeneity problem to be dealt with. Consider for example the following possible cases:
+* There can be terminological correspondence, but definitional differences in scope remain, which leads to [=semiotic heterogeneity=] or an obscured instance of [=terminological heterogeneity=] (compare for example: NEN2767 `Kade` and IMBOR `gebruiksfunctie:Kade`). This cannot be addressed only by subsumption under a mapping vocabulary.
+* There can be semantic correspondence, but disparity in terms of entity-type, as in a semantic correspondence between an IMBOR `ObjectType` and a NEN2767 `Element` or `Bouwdeel`. This is actually a distinction of model use that makes parts of the [=ontologies=] disjoint, but which masquerades behind a semantic correspondence=.
+* There can be a semiotic and terminological correspondence, but a semantic difference in use (compare for example: NEN2767 `Natuurgebied` and IMBOR `Natuurgebied`). NEN2767 could have a meronomy of a `Natuurgebied` which is strictly nonsensical (albeit not impossible) in the IMBOR modelling. This is caused by the fact that, as the [[NEN2660-2]] authors state, “NEN2767 is a meronomy for infrastructural concepts in which the functional and technical nature of those concepts is not properly distinguished.”
+
+#### Broader methodology of alignments
+
+What metatheoretical values or pragmatic considerations guide the construction of an [=alignment=]? Is deference to expert judgement always required here? This is of course not so much a remark on the proposed method itself, but rather on the broader methodology that the method is part of, and is partly within scope of the whitepaper (e.g. on governance). Returning to the case to illustrate this point, how far does the [=alignment=] need to go in matching terms and/or extending either one or both of the ontologies to match the domain of the ontology? With the focus on the heterogeneity problem, the type of [=alignment=] that needs to be sought is addressed adequately, but what remains underdeveloped is what to do with:
+1. the heterogeneity that remains after constructing an [=alignment=] (presupposing two ontologies do not have the exact same domain and reach); 
+2. the desired selection of abstract values to function as guide for how far a particular [=alignment=] should go in terms of defining the scope of two [=ontologies=] that should be aligned (i.e. are pragmatic reasons, terminological reasons or only semantic reasons brought to bear on this?), how symmetry in modelling has to be pursued before terms can be aligned, and what rules should govern the form and nature of expert input into this process.
+3. the possible multiplicity of heterogeneity problems inside a single two-ontology case. It is possible for the type of heterogeneity to vary from instance to instance within the same mapping casus. 
+

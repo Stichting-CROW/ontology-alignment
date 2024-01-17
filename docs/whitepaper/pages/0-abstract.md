@@ -5,7 +5,7 @@ It consists of two major parts:
 - Section [1](#learn-what-it-is), [2](#learn-why-to-use-it) and [3](#learn-how-to-make-it) which are 'normative' **_and contain everything one needs to know to put this best practice into practice_**.
 - Everything from section four onwards, which are definitions, in-depth explanations and other background information for those who need more knowledge. These can be used as reference works.
 
-When interest is peaked and one want’s to dive further in the matter, these publications are recommended. They also form the main inspiration for this best practice:
+When interest is piqued and one want’s to dive further in the matter, these publications are recommended. They also form the main inspiration for this best practice:
 
 - Ontology Matching, (2013), J. Euzenat [link](http://www.filosofiacienciaarte.org/attachments/article/1129/Je%CC%81ro%CC%82me%20Euzenat-Ontology%20Matching.pdf)
 - Metamodel Informatie Modellering, (2022), Geonovum [link](https://docs.geostandaarden.nl/mim/mim/)

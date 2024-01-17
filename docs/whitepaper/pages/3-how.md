@@ -15,10 +15,10 @@ The process in essence is fairly straightforward. It starts with two [=ontologie
 
 To illustrate the process and the endresult, we make use of a real life example situation regarding two [=ontologies=] about the build environment. Specifically about maintaining public space.
 
-There are two organisations that manage an [=ontology=] within the domain of public space management. The first is called 'IMBOR', which focusses on describing which (physical) asset types exists in the domain and what information municipalities need to efficiently maintain those assets. The second is called NEN2767-4, which focusses on a method for assessing conditions and states for (physical) asset types. While they have a different intended use and scope, there are similarities in the asset types they describe. Next to that, municipalities that are responsible for maintaining the public space use both to get (and keep) a complete picture of their (physical) assets. Therefore there is a wish to 1) align the terms so that assetmanagers speak the same language and 2) align the classes (or: conceptuals) so that software vendors for assetmanagement applications can use the [=ontologies=] in conjunction in their software.
+There are two organisations that manage an [=ontology=] within the domain of public space management. The first is called 'IMBOR', which focusses on describing which (physical) asset types exists in the domain and what information municipalities need, to efficiently maintain those assets. The second is called NEN2767-4, which focusses on a method for assessing conditions and states for (physical) asset types. While they have a different intended use and scope, there are similarities in the asset types they describe. Next to that, municipalities that are responsible for maintaining the public space use both to get (and keep) a complete picture of their (physical) assets. Therefore there is a wish to 1) align the terms so that assetmanagers speak the same language and 2) align the classes (or: conceptuals) so that software vendors for assetmanagement applications can use both [=ontologies=] in their software. Having this latter [=linkset=] it is possible make use of the common ground and transition the data, to use it for multiple purposes.
 
 > ADVISEMENT
-> The [=ontologies=] used as examples are both [[NEN2660-2]] compliant. Therefore they make a distinction between the vocabulary and the [=ontology=] and the use shapes to define the data structure. This is not obligatory in this best practice. But using this (graph) structure as expression is advisable, since it align with the alignment levels in this best practice.
+> The [=ontologies=] used as examples are both [[NEN2660-2]] compliant (the NEN2767-4 is made compliant for the example). Therefore they make a distinction between the vocabulary and the [=ontology=] and the use shapes to define the data structure. This is not obligatory in this best practice. But using this (graph) structure as expression is advisable, since it align with the alignment levels in this best practice.
 >
 > <figure>
 >
@@ -258,12 +258,12 @@ To ensure the best interpretation _and_ reuse of the [=alignment=] (and other [=
         dct:issued              "2023-01-03"^^xsd:date;   
         dct:conformsTo          <http://www.w3.org/2002/07/owl#> ;
         dct:instructionalMethod "Deze linkset mag alleen gebruikt worden in de context van de Ontology Alignment whitepaper t.b.v. de vergelijking van twee classes"@nl ;      
-        owl:versionInfo         "1.0.0 ;
+        owl:versionInfo         "1.0.0" ;
         owl:imports             imbor:, nen2767: ;
         .
 ```
 
-Now we have expressed in [[Turtle]], making use of the W3C standards [[RDF11-concepts]], [[RDF-Schema]], [[OWL2-primer]] and the [[NEN2660-2]] that two classes from different [=ontologies=] have a "equivalent" relation with each other. In this case software used by assetmanagers who use standards (e.g. IMBOR and NEN2767-4) in conjunction can logically logically deduct that instances are the same. This is shown in a basic diagram below:
+Now we have expressed in [[Turtle]], making use of the W3C standards [[RDF11-concepts]], [[RDF-Schema]], [[OWL2-primer]] and the [[NEN2660-2]] that two classes from different [=ontologies=] have a "equivalent" relation with each other. In this case software used by assetmanagers who use standards (e.g. IMBOR and NEN2767-4) in conjunction can logically deduct that instances are the same. This is shown in a basic diagram below:
 
 <figure>
 

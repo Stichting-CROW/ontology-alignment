@@ -40,7 +40,7 @@ This best practice describes a way for creating, managing, using and communicati
 * _'meaning/expressing the same thing'_ between class structures and,
 * _'wanting to capture the same data'_ between so-called shapes.
 
-The first one can be considered [=informal semantics=] and form the [=terminological level=] in [=linksets=]. This is used when there is no need for automation or the capacity for maintaining the [=linksets=] is low. The latter two form can be considered [=formal semantics=] and form the [=conceptual level=]. 
+The first one can be considered [=informal semantics=] and form the [=terminological level=] in [=linksets=]. This is used when there is no need for automation or the capacity for maintaining the [=linksets=] is low. The latter two form can be considered [=formal semantics=] and form the [=conceptual level=]. Sometimes the distinction is made clear with calling them respectively (semanticly) weak [=mappings=] and (semanticly) strong [=mappings=].
 
 <figure>
 
@@ -70,4 +70,4 @@ The basic components of a linkset and the levels
 This document is primarily intended for (information) modellers who want to create these [=linksets=]; software developers who need to use them in their software and people who want to use models and [=ontologies=] in conjunction based on [=linksets=] according to this best practice. Knowledge of information modelling is a plus. Knowledge of LinkedData and the NEN2660-2 is a plus but not necessary. This best practice focuses in particular on models within the built environment, but it can also be used in a broader context.
 
 > ADVISEMENT
-> This best practice has a clear focus on creating [=linksets=] and [=matching=] [=ontologies=]. It does not take the instance level in scope. The from [=linksets=] contain semantic links like 'related' and 'equivalent class', in contrast to 'same as'. 
+> This best practice has a clear focus on creating [=linksets=] and [=matching=] [=ontologies=]. It does not take the instance level in scope. The [=linksets=] contain semantic links like 'related' and 'equivalent class', in contrast to 'same as'. It is not said that a parts of this whitepaper _can_ be used to describe instance [=alignments=] though, it is just not the focus (for now).
