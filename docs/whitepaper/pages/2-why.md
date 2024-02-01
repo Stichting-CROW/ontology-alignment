@@ -1,6 +1,6 @@
 ## Learn WHY to use it
 
-In the previous section we have described [what the best practice for ontology alignment and ontology extension](#learn-what-it-is) is, therefore we now look at _why should you use it_?
+In the previous section we have described [what ontology alignment and ontology extension](#learn-what-it-is) is. We will therefore now look at _why should you use it_?
 
 In information heavy domains there are many different stakeholders, expert views and interests. In addition, there is a booming and much needed digitalisation trend. These developments combined are creating a proliferation of [=ontologies=] (also called information models, schemas or Object type libraries) to describe the universe of discourse. In the built environment domain some clarity has emerged on the use of a toplevel model (also called 'foundational' or 'upper[=ontologies=]') and the language binding to semantic web languages. This is the result of the advent of [[NEN2660-2]].
 

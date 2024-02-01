@@ -36,3 +36,16 @@ There is one part of [[SSSOM]] that is advised to be used. The are the ['Common 
 The Vocabulary of Interlinked Datasets [[VoID]] an [[RDF-schema]] vocabulary for expressing metadata about RDF datasets. It is intended as a bridge between the publishers and users of RDF data, with applications ranging from data discovery to cataloging and archiving of datasets. It defines entities like `void:Dataset` and `void:Linkset`. It is used quite commonly as a standard for describing [=alignments=].
 
 In this best practice [[VoID]] is used for the semantics of `void:Linkset` but nothing else.
+
+### Further information
+
+When interest is piqued and one want’s to dive further in the matter, these publications are recommended. They also form the main inspiration for this best practice:
+
+- Ontology Matching, (2013), J. Euzenat [link](http://www.filosofiacienciaarte.org/attachments/article/1129/Je%CC%81ro%CC%82me%20Euzenat-Ontology%20Matching.pdf)
+- Metamodel Informatie Modellering, (2022), Geonovum [link](https://docs.geostandaarden.nl/mim/mim/)
+- Ontology Matching - Lecture, (2022), S. Wang [link](https://www.utwente.nl/en/ces/sal/exams/digital-exams/Linked-Data-and-Semantic-Web/ldsw-lecture6-om-2021-2a.pdf)
+- Combining and relating ontologies: an analysis of problems and solutions, (2001), M. Klein [link](https://ceur-ws.org/Vol-47/klein.pdf)
+- Linked Data Provenance: State of the Art and Challenges, (2015), S. Anam [link](https://www.researchgate.net/publication/271829477_Linked_Data_Provenance_State_of_the_Art_and_Challenges)
+- Towards a Unified Metadata Model for Semantic and Data Mappings, (2022), S. Alzahrani [link](http://disi.unitn.it/~pavel/om2022/papers/om2022_poster2.pdf)
+- Alignments for data interlinking: a proposal for matching/linking cooperation, (2011), J. Euzenat [link](http://melinda.inrialpes.fr/proposal.html)
+- Describing Linked Datasets, (2009), K. Alexander [link](http://events.linkeddata.org/ldow2009/papers/ldow2009_paper20.pdf)
