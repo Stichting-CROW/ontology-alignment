@@ -38,6 +38,12 @@ var respecConfig = {
       href: "http://www.ontologymatching.org/",
       publisher: "Springer",
     },
+    "prEN 17632-2": {
+      title:
+        "Building Information Modelling (BIM) - Semantic Modelling and Linking (SML)",
+      href: "https://standards.cencenelec.eu/dyn/www/f?p=CEN:110:0::::FSP_PROJECT,FSP_ORG_ID:76161,1991542&cs=1D40D0701E13D1851B42C956BA0006B3C",
+      publisher: "CEN-CENELEC",
+    },
     MIM: {
       title: "MIM - Metamodel Informatie Modellering",
       href: "http://www.ontologymatching.org/",

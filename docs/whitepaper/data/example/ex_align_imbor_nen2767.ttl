@@ -26,8 +26,8 @@ imbor-term:  rdf:type           owl:Ontology ;
         .       
 
 :imbor-term_nen2767-4-term    rdf:type    owl:Ontology, void:Linkset ;
-        dct:title               "IMBOR en NEN2767-4 vocabulaire mapping"@nl ;
-        dct:description         "Handmatige voorbeeld mapping van de twee vocabulaires o.b.v. expert judgement"@nl ;
+        rdfs:label              "IMBOR en NEN2767-4 vocabulaire mapping"@nl ;
+        rdfs:comment            "Handmatige voorbeeld mapping van de twee vocabulaires o.b.v. expert judgement"@nl ;
         dct:publisher           "Stichting CROW"@nl ;
         dct:issued              "2022-12-31"^^xsd:date ;
         dct:conformsTo          <http://www.w3.org/2004/02/skos/core#> ;   
@@ -38,7 +38,7 @@ imbor-term:  rdf:type           owl:Ontology ;
 
 imbor-term:10f4ea25-70d7-4e3a-9a05-d7be8dfb0e36 
         skos:narrowMatch 
-                nen2676-term:BN
+                nen2767-term:BN
         .
 
 ## Conceptual
@@ -54,8 +54,8 @@ imbor:  rdf:type                owl:Ontology ;
         .       
 
 :imbor_nen2767-4    rdf:type    owl:Ontology, void:Linkset  ;
-        dct:title               "IMBOR en NEN2767-4 ontologie mapping"@nl ;
-        dct:description         "Handmatige voorbeeld mapping van de twee kernmodellen o.b.v. expert judgement"@nl ;
+        rdfs:label               "IMBOR en NEN2767-4 ontologie mapping"@nl ;
+        rdfs:comment         "Handmatige voorbeeld mapping van de twee kernmodellen o.b.v. expert judgement"@nl ;
         dct:publisher           "Stichting CROW"@nl ;
         dct:issued              "2023-01-03"^^xsd:date;   
         dct:conformsTo          <http://www.w3.org/2002/07/owl#> ;
@@ -72,11 +72,12 @@ imbor:  rdf:type                owl:Ontology ;
                   owl:hasValue          imbor-domeinwaarde:2d9771b5-d707-47f8-9577-898f05ead 
                 ] 
         ) ;
-        owl:equivalentClass nen2676:BN ;
+        owl:equivalentClass     nen2767:BN ;
+        rdfs:isDefinedBy        :imbor_nen2767-4 ;
         .
 
 # ## SAME
-# nen2676:BN owl:equivalentClass [
+# nen2767:BN owl:equivalentClass [
 #         owl:intersectionOf (
 #                 imbor:b193d52e-0243-4e0e-9f90-236edb35c624 
 #                 [ a owl:Restriction ;

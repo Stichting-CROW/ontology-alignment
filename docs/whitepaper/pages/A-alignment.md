@@ -71,7 +71,7 @@ When modelling a domain, there are a number of 'levels' of complexity (or richne
 > DEF
 > The [=terminological level=] describes the reality within the domain in scope (the 'universe of discourse') by means of the terms (or: 'words') used in it and their relationships to each other. The aim is for actors within it to understand each other and speak one language. A model of terms is drawn up for use by people, especially 'the business'. The terms are, most of the times, described in a formal language, a vocabulary. _Adapted from [[MIM]]_
 
-For this best practice [[SKOS-primer]] is advised, in combination with the [[NEN2660-2]].
+For this best practice [[skos-reference]] is advised, in combination with the [[NEN2660-2]].
 
 ##### <dfn>Informal semantics</dfn>
 
@@ -144,7 +144,7 @@ Considering the IMBOR and NEN2767-4 case, one can agree with the statement that 
 
 #### Broader methodology of alignments
 
-What metatheoretical values or pragmatic considerations guide the construction of an [=alignment=]? Is deference to expert judgement always required here? This is of course not so much a remark on the proposed method itself, but rather on the broader methodology that the method is part of, and is partly within scope of the whitepaper (e.g. on governance). Returning to the case to illustrate this point, how far does the [=alignment=] need to go in matching terms and/or extending either one or both of the ontologies to match the domain of the ontology? With the focus on the heterogeneity problem, the type of [=alignment=] that needs to be sought is addressed adequately, but what remains underdeveloped is what to do with:
+What metatheoretical values or pragmatic considerations guide the construction of an [=alignment=]? Is deference to expert judgement always required here? This is of course not so much a remark on the proposed method itself, but rather on the broader methodology that the method is part of, and is partly within scope of the whitepaper (e.g. on [=governance=]). Returning to the case to illustrate this point, how far does the [=alignment=] need to go in matching terms and/or extending either one or both of the ontologies to match the domain of the ontology? With the focus on the heterogeneity problem, the type of [=alignment=] that needs to be sought is addressed adequately, but what remains underdeveloped is what to do with:
 1. the heterogeneity that remains after constructing an [=alignment=] (presupposing two ontologies do not have the exact same domain and reach); 
 2. the desired selection of abstract values to function as guide for how far a particular [=alignment=] should go in terms of defining the scope of two [=ontologies=] that should be aligned (i.e. are pragmatic reasons, terminological reasons or only semantic reasons brought to bear on this?), how symmetry in modelling has to be pursued before terms can be aligned, and what rules should govern the form and nature of expert input into this process.
 3. the possible multiplicity of heterogeneity problems inside a single two-ontology case. It is possible for the type of heterogeneity to vary from instance to instance within the same mapping casus. 

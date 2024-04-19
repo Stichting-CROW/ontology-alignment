@@ -18,31 +18,35 @@
 ## Terminological
 
 nen2767-term:   rdf:type    owl:Ontology ;
-        rdfs:comment  "Dit is wellicht gelijk aan de NPR van NEN2767-4"@nl ;
-        rdfs:label    "NEN2767-4 Vocabulaire"@nl ;
+        rdfs:comment    "Dit is wellicht gelijk aan de NPR van NEN2767-4"@nl ;
+        rdfs:label      "NEN2767-4 Vocabulaire"@nl ;
         .
 
-nen2676-term:BN 
+nen2767-term:BN 
         rdf:type         skos:Concept ;
         skos:definition  "Uitwateringssluis om een overvloed aan water op het binnenwater gereguleerd naar een lager gelegen buitenwater te laten afvloeien. Tevens dient de spuisluis voor het keren van buitenwater."@nl ;
         skos:prefLabel   "Spuisluis"@nl ;
+        rdfs:isDefinedBy nen2767-term: ;
         .
 
 
 ## Conceptual
 
-nen2676:    rdf:type    owl:Ontology ;
+nen2767:    rdf:type    owl:Ontology ;
         rdfs:comment   "Dit normatieve gedeelte betreft de ontologie (de kern) van NEN2767-4"@nl ;
         rdfs:label     "NEN2767-4 Ontologie"@nl ;
         .
 
-nen2676:BN
+nen2767:BN
         rdf:type         rdfs:Class ;
-        rdfs:seeAlso     nen2676-term:BN ;
+        rdfs:seeAlso     nen2767-term:BN ;
         skos:definition  "Kunstwerk met een beweegbare waterkering, dat de verbinding vormt tussen twee wateren."@nl ;
         skos:prefLabel   "Spuisluis"@nl ;
+        rdfs:isDefinedBy nen2767: ;
         .
 
-nen2676:93
+nen2767:93
         rdf:type        rdfs:Class ;
-        skos:prefLabel  "Cementbeton"@nl .
+        skos:prefLabel  "Cementbeton"@nl ;
+        rdfs:isDefinedBy nen2767-: ;
+        .

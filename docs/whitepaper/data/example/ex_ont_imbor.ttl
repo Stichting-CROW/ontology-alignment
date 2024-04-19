@@ -41,6 +41,7 @@ imbor:b193d52e-0243-4e0e-9f90-236edb35c624
         skos:definition  "Kunstwerk met een beweegbare waterkering, dat de verbinding vormt tussen twee wateren."@nl ;
         skos:prefLabel   "Sluis"@nl ;
         sh:property      imbor:664c6523-af24-43c5-9917-bad872c2b6bd ;
+        rdfs:isDefinedBy imbor: ;
         .
 
 imbor:664c6523-af24-43c5-9917-bad872c2b6bd
@@ -49,6 +50,7 @@ imbor:664c6523-af24-43c5-9917-bad872c2b6bd
         sh:path                 imbor:e3e112b3-e46f-45c4-b2c9-b152e6f805a1 ;
         sh:qualifiedMaxCount    1 ;
         sh:qualifiedValueShape  [ sh:class  imbor:8caeda34-4605-4388-b07d-5b1761bdd4c3 ] ;
+        rdfs:isDefinedBy        imbor: ;
         .
 
 imbor:e3e112b3-e46f-45c4-b2c9-b152e6f805a1
@@ -57,6 +59,7 @@ imbor:e3e112b3-e46f-45c4-b2c9-b152e6f805a1
         skos:definition  "Typering van het beheerobject."@nl ;
         skos:note        "Enumeratie"@nl ;
         skos:prefLabel   "type"@nl ;
+        rdfs:isDefinedBy imbor: ;
         .
 
 imbor:8caeda34-4605-4388-b07d-5b1761bdd4c3
@@ -65,6 +68,7 @@ imbor:8caeda34-4605-4388-b07d-5b1761bdd4c3
         rdfs:subClassOf  nen2660:EnumerationType ;
         skos:definition  "Het enumeratietype SluisType is de naam voor de domeinwaardenlijst van de klasse Sluis en het attribuut type."@nl ;
         skos:prefLabel   "SluisType"@nl ;
+        rdfs:isDefinedBy imbor: ;
         .
 
 imbor-domeinwaarde:2d9771b5-d707-47f8-9577-898f05eadd08
@@ -72,4 +76,5 @@ imbor-domeinwaarde:2d9771b5-d707-47f8-9577-898f05eadd08
         rdfs:seeAlso     imbor-term:0d1b5949-ae26-4f85-8ef0-b0491eeadcfe ;
         skos:definition  "Een sluis bedoeld om binnenwater te spuien, dat wil zeggen, het te lozen, en buitenwater te keren."@nl ;
         skos:prefLabel   "Spuisluis"@nl ;
+        rdfs:isDefinedBy imbor-domeinwaarde: ;
         .

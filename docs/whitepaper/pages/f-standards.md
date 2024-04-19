@@ -14,20 +14,20 @@ The Dutch standard "Rules for information modelling of the built environment - P
 
 In this best practice the [[NEN2660-2]] is used for declaring some of the [=ontology=] entities and the distinction between the vocabulary (graph) and the ontology (graph). As well as the use of `rdfs:seeAlso` to describe the relation between the two. Furthermore is advised to use the [[NEN2660-2]] implementations for the different [levels](#alignment-levels):
 
-- [[SKOS-primer]] for the [=terminological level=];
-- [[RDF-schema]]+[[SHACL]] for the [=conceptual level=].
+- [[skos-reference]] for the [=informal semantics=] on the [=terminological level=];
+- [[RDF-schema]]+[[SHACL]] for the [=formal semantics=] on the [=conceptual level=].
 
 ### SKOS
 
-[[SKOS-primer]] is used in conjunction with the [[NEN2660-2]] to describe vocabularies, but it is also used to express the semantics of the [=linksets=] on the [=terminological level=]. The relations as describes in [[SKOS-primer]] are used to describe the specific relation between two terms in the [=alignment=]. If [[SKOS-primer]] is used in the [=alignment=], it can be automatically concluded that the [=alignment=] is on the [=terminological level=]. 
+[[skos-reference]] is used in conjunction with the [[NEN2660-2]] to describe vocabularies, but it is also used to express the semantics of the [=linksets=] on the [=terminological level=]. The relations as describes in [[skos-reference]] are used to describe the specific relation between two terms in the [=alignment=]. If [[skos-reference]] is used in the [=alignment=], it can be automatically concluded that there is an informal [=alignment=] on the [=terminological level=]. 
 
 ### OWL
 
-[[OWL2-primer]] is used to express the semantics of the [=linksets=] on the [=conceptual level=]. The relations as describes in [[OWL2-primer]] are used to describe the specific relation between two classes in the [=alignment=]. If [[OWL2-primer]] is used in the [=alignment=], it can be automatically concluded that the [=alignment=] is on the [=conceptual level=]. 
+[[OWL2-overview]] is used to express the semantics of the [=linksets=] on the [=conceptual level=]. The relations as describes in [[OWL2-overview]] are used to describe the specific relation between two classes in the [=alignment=]. If [[OWL2-overview]] is used in the [=alignment=], it can be automatically concluded that there is a formal [=alignment=] on the [=conceptual level=]. 
 
 ### SSSOM
 
-The Simple Standard for Sharing Ontology Mappings [[SSSOM]] is another [=alignment=] standard which was consided for this whitepaper. It is an metadata standard for describing semantic mappings. Including a machine-readable and extensible vocabulary to describe metadata of [=alignments=] ans an easy to use table-based format that integrates seamlessly with LinkedData standards. The reason for not adopting it here is that it cannot express complex [=correspondences=]. So while it is enough for the [=terminological level=] and in some simple cases for the [=conceptual level=], it has not enough expressive power to express the rest of the situations. And therefore it is not comprehensive enough to be used as a sustainable and scalable option for this best practice. That is a shame because it is definitely easier to use in comparison to the [[Alignment format]] and [[EDOAL]] and [[OWL2-primer]].
+The Simple Standard for Sharing Ontology Mappings [[SSSOM]] is another [=alignment=] standard which was consided for this whitepaper. It is an metadata standard for describing semantic mappings. Including a machine-readable and extensible vocabulary to describe metadata of [=alignments=] ans an easy to use table-based format that integrates seamlessly with LinkedData standards. The reason for not adopting it here is that it cannot express complex [=correspondences=]. So while it is enough for the [=terminological level=] and in some simple cases for the [=conceptual level=], it has not enough expressive power to express the rest of the situations. And therefore it is not comprehensive enough to be used as a sustainable and scalable option for this best practice. That is a shame because it is definitely easier to use in comparison to the [[Alignment format]] and [[EDOAL]] and [[OWL2-overview]].
 
 There is one part of [[SSSOM]] that is advised to be used. The are the ['Common Mapping Predicates'](https://mapping-commons.github.io/sssom/spec/#predicates). This set of predicates describe the most used mapping predicates and for maximum re-use, the use of these are strongly encouraged/advised.
 
