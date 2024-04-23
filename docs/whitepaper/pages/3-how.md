@@ -222,12 +222,12 @@ The next step is to create the actual [=alignment=]. In this case there are two 
   - This second property of `mapping_sluis_spuisluis` is `owl:equivalentClass`, the meaning of which is that the two have exactly the same set of individuals. In this example "Spuisluis" (`nen2767:BN`) is used. 
 
 > NOTE
-> In the example the mapping is formalised in a class. This does not always have to be the case. In many cases a relation such as `owl:equivalentClass` can be used directly.
+> In many cases a relation such as `owl:equivalentClass` can be used directly between two classes, without the need for further elaboration. In the example below, however, the mapping needs to assert more than an equivalence between two classes from different ontologies. That is, IMBOR requires an intersection (i.e., a combination) of a certain IMBOR class and a specific value of an IMBOR property. To capture this requirement in a formal manner, the example coins a new (anonymous) class that represents the intersection.
 
 The above states in formal [[OWL2-overview]] that individuals of the class NEN2767 "Spuisluis" may be considered as the same individuals from the IMBOR "Sluis" class, but only if the have the value "Spuisluis" on the property "type". 
 
 ```turtle
-:mapping_sluis_spuisluis
+:entity_according_to_imbor_for_spuisluis
         owl:intersectionOf (
                 imbor:b193d52e-0243-4e0e-9f90-236edb35c624 
                 [ a owl:Restriction ;
@@ -321,7 +321,7 @@ imbor:  rdf:type                owl:Ontology ;
 ```
 
 > ADVISEMENT
-> These kinds of [=mappings=] can be applied to all [=ontologies=] that use [=formal semantics=] for a strong [=alignment=] using classes, whether they are `rdfs:Class`, `owl:Class` or `sh:NodeShape`.
+> These kinds of [=mappings=] can be applied to all [=ontologies=] that use [=formal semantics=] for a strong [=alignment=] between classes, whether they are `rdfs:Class`, `owl:Class` or `sh:NodeShape`.
 
 ### Extending the conceptuals
 
@@ -377,4 +377,4 @@ Simplified diagram of the basis components of the extension in diagram form (wit
 </figure>
 
 >NOTE
->Setting linksets separately (as described earlier) is not always common. When using top models, we usually see direct connections doing an extension. Those top models are often a shared framework through which meaning is expressed so as to have some basic agreements with others. For example, the agreement: "these are all physical objects". These are then a set of shared agreements at a more abstract level that one wants to build on. Specifically: for `rdfs:subClassOf` it is not necessarily common to do so. It can be done, of course, but it must remain practical.
+>Sharing linksets separately (as described earlier) is not always common. In the use of top models we tend to see the links shared as part of the ontology that is extending the top model. A top model is a shared framework through which meaning is expressed so as to have some basic agreements with others. For example, the agreement: "these are all physical objects". Knowledge from the top model is therefore a set of shared agreements at a more abstract level, which one often wants to build on directly without a desire to be flexible in selecting other models as a potential top model through separate linksets.

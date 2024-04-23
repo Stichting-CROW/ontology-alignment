@@ -64,7 +64,7 @@ imbor:  rdf:type                owl:Ontology ;
         owl:imports             imbor:, nen2767: ;
         .
 
-:mapping_sluis_spuisluis
+:entity_according_to_imbor_for_spuisluis
         owl:intersectionOf (
                 imbor:b193d52e-0243-4e0e-9f90-236edb35c624 
                 [ a                     owl:Restriction ;
