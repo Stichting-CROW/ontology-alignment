@@ -12,23 +12,38 @@ A standard approach is still lacking for linking (or [=mapping=]) [=ontologies=]
 
   Working with small and self-sufficient modular [=ontologies=], instead of monolithic ones. The teams responsible for creating and managing the [=ontologies=] can be the same as the ones for the [=linksets=], but if the task is getting too large the responsibilities can be separated. 
 
+> EXAMPLE "Manageable ontologies"
+> A municipality creates an ontology for describing their information needs. The 'Roads' department creates the ontology for roads and the 'Green' department creates an ontology for trees, foliage, etc. In the end these should be deployed together to a contractor. Therefore a linkset must be made to keep the two separate ontologies aligned, withoud disturbing eachothers proces. 
+
 - **_Data transition_**
 
   Expressing the links between two versions of the same [=ontology=] (the delta) or between versions of other ontologies, and thus, updating data from one [=ontology=] to another.
+
+> EXAMPLE "Data transition"
+> An organisation has height data of a tree that is classified to version 1.0 of an ontology. In version 1.1 of that ontology the height of a tree is not measured from the ground to the top, but the roots are also included. The linkset between 1.0 and 1.1 contains information to automatically transition the data. 
 
 - **_Using common ground_**
 
   Putting back an [=ontology=] in the context of a toplevel ontology, allowing it to become more consensual with other [=ontologies=] of that domain.
 
+> EXAMPLE "Using common ground"
+> A municipality makes their own ontology for roads. Instead of making their own top level ontology, the use the toplevel models from NEN2660-2 and NEN3610 as base, by stating: `x:Tree rdfs:subClassOf nen2660:DiscreteObject`
+
 - **_Re-using existing knowledge_**
 
   Using [=ontology extensions=] to link [=ontologies=] together allows for re-using already available knowledge. This avoids redundancy (which can lead to confusion and inconsistency, making it harder to integrate and share data). And at the same time it leads to semantic enrichment (combining multiple [=ontologies=] from different domains, facilitating more advanced reasoning and data analysis) and higher levels of standardisation. 
+
+> EXAMPLE "Re-using existing knowledge"
+> A municipality makes their own ontology for roads, this includes entities about inspections. But instead of defining their own inspections methods, they adopt (and thus link to) a predefined vocabulary of inspection methods declared by CROW.
 
 - **_Conjunctive use_**
 
   Using [=ontologies=] together in the same process or application, allows for more seamless interdisciplinary projects.
 
-The last reason is quite urgent. Currently, this is often left to the software suppliers or modellers, while [=ontology=] (or "standard") maintainers _could_ and _should_ pay more attention to this. Certainly software vendors that need to use [=ontologies=] in their software have to deal with multiple, distributed and evolving ontologies. For them, clarity regarding how to use them together is very important. Predictability about the structure of the [=linksets=] _and_ the provenance, authorship and versioning information about this [=linkset=] is believed to be a big enabler for adoption.
+> EXAMPLE "Conjunctive usee"
+> A software vendor creates an integrated application for public space management. The application should adhere to the sector standards IMBOR and GWSW. Both standards are ontologies that define different information requirements for a sewer drain. The owners of IMBOR and GWSW have defined a machine-readable linkset, which serves as a third model that the software vendor can import. This ensures that the vendor does not have to worry about compliance with both ontologies.
+
+This last reason is quite urgent. Currently, this is often left to the software suppliers or modellers, while [=ontology=] (or "standard") maintainers _could_ and _should_ pay more attention to this. Certainly software vendors that need to use [=ontologies=] in their software have to deal with multiple, distributed and evolving ontologies. For them, clarity regarding how to use them together is very important. Predictability about the structure of the [=linksets=] _and_ the provenance, authorship and versioning information about this [=linkset=] is believed to be a big enabler for adoption.
 
 ### Separated linkset
 
