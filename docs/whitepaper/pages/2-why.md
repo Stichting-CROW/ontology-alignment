@@ -63,6 +63,10 @@ The arguments mentioned above show _why_ it is worthwile to express relations be
 
 
 ### Best practice 
+In Annex E of [[prEN 17632-2]] [=linksets=] are mentioned as follows _"Explicitly (and therefore more reusable) by declaratively modelling the links, preferably separately from the ontologies/information sets that are to be linked in 'link sets'. This way the link sets/links themselves remain 'agnostic' and 'clean'." ... "Technically, from a 'linked data' technology perspective, a simple link set is a collection of RDF triples in which both the object and the subject of the triples can refer to elements from different ontologies or information sets. Every rdf:Property instance can be regarded as a "link"; so all relationships that are used in 'modelling' can be used for 'linking' too._
+
+The [[prEN 17632-2]] also mentions: _"The modelling of information models (here [=ontologies=]) and information sets is one thing. The (inter)linking of information models, the (inter)linking of information sets, and the linking of information sets to information models, is another. In the future, this linking will become increasingly important since information models and information sets are often interrelated in practice and complementing and strengthening each other in multidisciplinary decision making."_
+
 Because a standard approach for creating [=linksets=] regarding to [=ontology matching=] and [=ontology extending=] is lacking, this best practice sets out to be one for the built environment. Therefore the following principles hold for this best practice:
 
 1. Using existing web standards such as (but not limited to) [[rdf-schema]],[[turtle]],[[VoID]] and [[vocab-dcat-3]]; nothing new is invented. Every component is well documented, tested and tried;
