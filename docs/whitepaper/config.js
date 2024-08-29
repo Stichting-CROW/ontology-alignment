@@ -1,6 +1,6 @@
 var respecConfig = {
   // => https://github.com/stichting-crow/respec/wiki
-  specStatus: "DRAFT",
+  specStatus: "DEF",
   shortName: "ontology-alignment/whitepaper",
   specType: "whitepaper", // vrije tekst, kleine letter
   imprint: "crow",
