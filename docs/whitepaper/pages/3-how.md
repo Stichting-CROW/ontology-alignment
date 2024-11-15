@@ -85,7 +85,7 @@ imbor-term:10f4ea25-70d7-4e3a-9a05-d7be8dfb0e36
 
 > ADVISEMENT "Using predefined semantics"
 >
-> To ensure maximum understanding, it is part of this best practice to specify the value for the predicate with the [predicates](https://mapping-commons.github.io/sssom/spec/#common-mapping-predicates) selected by [[SSSOM]].
+> To ensure maximum understanding, it is part of this best practice to specify the value for the predicate with the [predicates](https://mapping-commons.github.io/sssom/spec-model/#allowed-and-common-mapping-predicates) selected by [[SSSOM]].
 
 To ensure the best interpretation _and_ reuse of the [=alignment=] (and other [=linksets=]), some extra information is to be declared about the [=alignment=] in the form of its own [=ontology=] and metadata. In this case `rdfs:label` is used to name the set and `rdfs:comment` is used to provide an indication of the matching method and a description. Furthermore the [=ontology=] is needed to provide some provenance, authoring and versioning information. Therefore a publisher is provided via `dct:publisher` and a publish date via `dct:issued`. Similar to the [=ontologies=] `dct:conformsTo` is used to declare the formal language in which the [=linkset=] is written. This example identifies that the [=alignment=] is on the [=terminological level=] too ([[skos-reference]]). `dct:instructionalMethod` is used in this best practice to state the intended use of the [=linkset=]. Lastly `owl:versionInfo` defines the version of the [=linkset=] and an `owl:imports` statement is then used to reference the used [=ontologies=] from the previous step, whose meaning is considered to be part of the meaning of the importing ontology.
 

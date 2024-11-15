@@ -29,7 +29,7 @@ In this best practice the [[NEN2660-2]] is used for declaring some of the [=onto
 
 The Simple Standard for Sharing Ontology Mappings [[SSSOM]] is another [=alignment=] standard which was consided for this whitepaper. It is an metadata standard for describing semantic mappings. Including a machine-readable and extensible vocabulary to describe metadata of [=alignments=] ans an easy to use table-based format that integrates seamlessly with LinkedData standards. The reason for not adopting it here is that it cannot express complex [=correspondences=]. So while it is enough for the [=terminological level=] and in some simple cases for the [=conceptual level=], it has not enough expressive power to express the rest of the situations. And therefore it is not comprehensive enough to be used as a sustainable and scalable option for this best practice. That is a shame because it is definitely easier to use in comparison to the [[Alignment format]] and [[EDOAL]] and [[OWL2-overview]].
 
-There is one part of [[SSSOM]] that is advised to be used. The are the ['Common Mapping Predicates'](https://mapping-commons.github.io/sssom/spec/#predicates). This set of predicates describe the most used mapping predicates and for maximum re-use, the use of these are strongly encouraged/advised.
+There is one part of [[SSSOM]] that is advised to be used. The are the ['Common Mapping Predicates'](https://mapping-commons.github.io/sssom/spec-model/#allowed-and-common-mapping-predicates). This set of predicates describe the most used mapping predicates and for maximum re-use, the use of these are strongly encouraged/advised.
 
 ### VoID
 
