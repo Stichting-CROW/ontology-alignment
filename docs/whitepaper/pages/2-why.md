@@ -10,7 +10,7 @@ A standard approach is still lacking for linking (or [=mapping=]) [=ontologies=]
 
 - **_Manageable ontologies_**
 
-  Working with small and self-sufficient modular [=ontologies=], instead of monolithic ones. The teams responsible for creating and managing the [=ontologies=] can be the same as the ones for the [=linksets=], but if the task is getting too large the responsibilities can be separated. 
+  Working with small and self-sufficient modular [=ontologies=], instead of monolithic ones. The teams responsible for creating and managing the [=ontologies=] can be the same as the ones for the [=linksets=], but if the task is getting too large the responsibilities can be separated. Changes and modifications of [=ontologies=] should be done with the awareness and mutualagreement of the people involved and affected. Having large teams governing [=ontologies=] during their use makes the modification and maintenance process long andcomplicated. Furthermore, an [=ontology=] that contains too many concepts will become increasingly difficult to oversee and maintain. A more difficult to oversee, but equally important argument can be made for the roadmap, or ambitions for future extensions. If possible this should be considered when designing an [=ontology=].
 
 > EXAMPLE "Manageable ontologies"
 > A municipality creates an ontology for describing their information needs. The 'Roads' department creates the ontology for roads and the 'Green' department creates an ontology for trees, foliage, etc. In the end these should be deployed together to a contractor. Therefore a linkset must be made to keep the two separate ontologies aligned, withoud disturbing eachothers proces. 
@@ -27,7 +27,7 @@ A standard approach is still lacking for linking (or [=mapping=]) [=ontologies=]
   Putting back an [=ontology=] in the context of a toplevel ontology, allowing it to become more consensual with other [=ontologies=] of that domain.
 
 > EXAMPLE "Using common ground"
-> A municipality makes their own ontology for roads. Instead of making their own top level ontology, the use the toplevel models from NEN2660-2 and NEN3610 as base, by stating: `x:Tree rdfs:subClassOf nen2660:DiscreteObject`
+> A municipality makes their own ontology for roads. Instead of making their own top level ontology, the use the toplevel models from NEN2660-2 and NEN3610 as base, by stating: `ex:Tree rdfs:subClassOf nen2660:DiscreteObject`
 
 - **_Re-using existing knowledge_**
 
@@ -35,6 +35,13 @@ A standard approach is still lacking for linking (or [=mapping=]) [=ontologies=]
 
 > EXAMPLE "Re-using existing knowledge"
 > A municipality makes their own ontology for roads, this includes entities about inspections. But instead of defining their own inspections methods, they adopt (and thus link to) a predefined vocabulary of inspection methods declared by CROW.
+
+- **_Access and Security_**
+
+  Due to various reasons (e.g. organizational, NDAs, sharing with external parties etc.), access to certain [=ontologies=] might need to be limited. Splitting the [=ontologies=] allows for a more granular way of managing access to the information. If questions like: "Is the same confidentiality level applicable on all the content?" Or "are all users of 'subset A' allowed to have access to 'subset B' and vice versa? should be answered with 'No', then it is most likely better to split up the [=ontologies=] in multiple sets, until all answers becomes 'Yes'.
+
+> EXAMPLE "Using common ground"
+> A municipality manages a public ontology with standardised asset definitions. An internal knowledge base for standard processes for asset maintenance is proposed, which should include links between the processes and asset definitions. For security reasons, the maintenance processes can contain sensitive and should be only available to those that need to access this information. 
 
 - **_Conjunctive use_**
 
