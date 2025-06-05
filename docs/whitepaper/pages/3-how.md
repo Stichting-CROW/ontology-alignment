@@ -11,22 +11,22 @@ The matching process in essence
 </figcaption>
 </figure>
 
-The process of making the [=alignment=] is, in essence, is fairly straightforward. It starts with two [=ontologies=] that need [=matching=] because of a [heterogeneity problem](#heterogeneity-problem). The intended use of the [=linkset=], in combination with the heterogeneity problem results in a descision for 1) the [matching method](#matching-methods) and 2) the [level(s)](#alignment-levels) at which the [=linksets=] are made. When the [=ontologies=] are identified and the kind of problem is clear, the actual [=ontology matching=] can be conducted. The matching will result in an [=ontology alignment=], which consists of a set of [=correspondence=]s. the [=alignment=] can be seen as a [=mapping=] from one [=ontology=] to another (directed), consisting of a set of [=mapping rule=]s.
+The process of making the [=alignment=] is, in essence, fairly straightforward. It starts with two [=ontologies=] that need [=matching=] because of a [heterogeneity problem](#heterogeneity-problem). The intended use of the [=linkset=], in combination with the heterogeneity problem results in a descision for 1) the [matching method](#matching-methods) and 2) the [level(s)](#alignment-levels) at which the [=linksets=] are made. When the [=ontologies=] are identified and the kind of problem is clear, the actual [=ontology matching=] can be conducted. The matching will result in an [=ontology alignment=], which consists of a set of [=correspondence=]s. the [=alignment=] can be seen as a [=mapping=] from one [=ontology=] to another (directed), consisting of a set of [=mapping rule=]s.
 
-To illustrate the process and the endresult, we make use of a real life example situation regarding two [=ontologies=] about the built environment. Specifically about maintaining public spaces. This example will be used troughout the whole document.
+To illustrate the process and the end result, we make use of a real life example situation regarding two [=ontologies=] about the built environment. Specifically about maintaining public spaces. This example will be used throughout the whole document.
 
 > EXAMPLE
-> CROW and NEN are two organisations that manage an [=ontology=] within the domain of public space management. The ontology by CROW is called 'IMBOR', which focusses on describing which (physical) asset types exists in the domain and what information municipalities need, to efficiently maintain those assets. The ontology by NEN is called NEN2767-4, which focusses on a method for assessing conditions and states for (physical) asset types. While they have a different intended use and scope, there are similarities in the asset types they describe. Municipalities that are responsible for maintaining the public space use both to get (and keep) a complete picture of their (physical) assets. Therefore there is a wish to 1) align the terms so that assetmanagers speak the same language and 2) align the classes (or: conceptuals) so that software vendors for assetmanagement applications can use both [=ontologies=] in their software. With this latter [=linkset=] it will be possible to make use of the common ground and transition the data, to use it for multiple purposes.
+> CROW and NEN are two organisations that manage an [=ontology=] within the domain of public space management. The ontology by CROW is called 'IMBOR', which focusses on describing which (physical) asset types exist in the domain and what information municipalities need to efficiently maintain those assets. The ontology by NEN is called NEN2767-4, which focusses on a method for assessing conditions and states for (physical) asset types. While they have different intended uses and scopes, there are similarities in the asset types they describe. Municipalities that are responsible for maintaining the public space use both to get (and keep) a complete picture of their (physical) assets. Therefore there is a wish to 1) align the terms so that assetmanagers speak the same language and 2) align the classes (or: conceptuals) so that software vendors for assetmanagement applications can use both [=ontologies=] in their software. With this latter [=linkset=] it will be possible to make use of the common ground and transition the data, to use it for multiple purposes.
 
-The used example is nice and simple. It’s certain that real life data is considerably more complex! It might not be immediately obvious how to apply this lessons. But one should be cautious about complicating the [=linksets=]. Usually, a simple [=linkset=] already solves a significant part of the problems. Therefore, think carefully about whether it really needs to be that complicated.
+The used example is nice and simple. It’s certain that real life data is considerably more complex! It might not be immediately obvious how to apply these lessons. But one should be cautious about complicating the [=linksets=]. Usually, a simple [=linkset=] already solves a significant part of the problems. Therefore, think carefully about whether it really needs to be that complicated.
 
-In this example, the two [=ontologies=]  used are both [[NEN2660-2]] compliant (or made so for the purpose of this example). They make a distinction between the vocabulary and the [=ontology=] and they use shapes to define the data structure. This structure is not obligatory for applying this best practice. But using this (graph) structure as expression is advisable, as detailed in the [[NEN2660-2]].
+In this example, the two [=ontologies=]  used are both [[NEN2660-2]] compliant (or made so for the purpose of this example). They make a distinction between the vocabulary and the [=ontology=] and they use shapes to define the data structure. This structure is not obligatory for applying this best practice. But using this (graph) structure as a form of expression is advisable, as detailed in the [[NEN2660-2]].
 
 ### Creating the informal alignment
 
 Let's start with the first wish for an [=alignment=] on the [=informal semantics=] ([=terminological level=]). First we have to look at the two [=ontologies=] and see what is there.
 
-Below is the IMBOR vocabulary [=ontology=]. This contains one entity (`imbor-term:10f4ea25-70d7-4e3a-9a05-d7be8dfb0e36`), being the the identifier for "Sluis" (English: "Sluice").
+Below is the IMBOR vocabulary [=ontology=]. This contains one entity (`imbor-term:10f4ea25-70d7-4e3a-9a05-d7be8dfb0e36`), being the the identifier for "Sluis" (English: "Sluice" of "Lock").
 
 ```turtle
 imbor-term:
@@ -43,7 +43,7 @@ imbor-term:10f4ea25-70d7-4e3a-9a05-d7be8dfb0e36
         .
 ```
 
-Next up, the NEN2767-4 vocabulary [=ontology=] with one entity (`nen2767-term:BN` is the identifier for "Spuisluis") (English: "Drainage sluice"):
+Next up, the NEN2767-4 vocabulary [=ontology=] with one entity (`nen2767-term:BN` is the identifier for "Spuisluis") (English: "Drainage sluice" or "River lock"):
 
 ```turtle
 nen2767-term:
@@ -59,9 +59,9 @@ nen2767-term:BN
         .
 ```
 
-Domain experts will know that the two terms, "Spuisluis" and "Sluis", are related. From first glance, it appears that the NEN2767-4 term "Spuisluis" is more specific than the IMBOR term "Sluis.
+Domain experts will know that the two terms, "Spuisluis" and "Sluis", are related. At first glance, it appears that the NEN2767-4 term "Spuisluis" is more specific than the IMBOR term "Sluis".
 
-Because the intended use is in (spoken) natural language and there is a [=terminological heterogeneity=] problem, we can decide that we make an informal [=alignment=] on the [=terminological level=] and use [=expert-judgement=] as a method. If we run the matching process we see a [=correspondence=] between the two terms. To express this in a [=linkset=] we have to declare which two [=ontologies=] are in scope. This is done via pointing to each `owl:Ontology`. Then we declare which version of the [=ontology=] is being used, via `owl:versionInfo`. And lastly how to interpret them via `dct:conformsTo`, to which expected values are `<http://www.w3.org/2004/02/skos/core#>` and `http://www.w3.org/2002/07/owl#`. In this case both are expressed in [[skos-reference]].
+Because the intended use is in (spoken) natural language and there is a [=terminological heterogeneity=] problem, we can decide that we make an informal [=alignment=] on the [=terminological level=] and use [=expert-judgement=] as a method. If we run the matching process we see a [=correspondence=] between the two terms. To express this in a [=linkset=] we have to declare which two [=ontologies=] are in scope. This is done via pointing to each `owl:Ontology`. Then we declare which version of the [=ontology=] is being used, via `owl:versionInfo`. And lastly we express how to interpret the terms via `dct:conformsTo`, to which expected values are `<http://www.w3.org/2004/02/skos/core#>` and `http://www.w3.org/2002/07/owl#`. In this case both are expressed in [[skos-reference]].
 
 ```turtle
 nen2767-term:  rdf:type         owl:Ontology ;
