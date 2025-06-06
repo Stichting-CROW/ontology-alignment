@@ -26,7 +26,7 @@ In this example, the two [=ontologies=]  used are both [[NEN2660-2]] compliant (
 
 Let's start with the first wish for an [=alignment=] on the [=informal semantics=] ([=terminological level=]). First we have to look at the two [=ontologies=] and see what is there.
 
-Below is the IMBOR vocabulary [=ontology=]. This contains one entity (`imbor-term:10f4ea25-70d7-4e3a-9a05-d7be8dfb0e36`), being the the identifier for "Sluis" (English: "Sluice" of "Lock").
+Below is the IMBOR vocabulary [=ontology=]. This contains one entity (`imbor-term:10f4ea25-70d7-4e3a-9a05-d7be8dfb0e36`), being the the identifier for "Sluis" (English: "Sluice" or "Lock").
 
 ```turtle
 imbor-term:
